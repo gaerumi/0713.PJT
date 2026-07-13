@@ -125,6 +125,21 @@
             transform: rotate(-90deg);
             transform-origin: 50% 50%;
         }
+
+        /* Comment Animation */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-comment-node {
+            animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
     </style>
 </head>
 <body class="selection:bg-vividPink selection:text-white">
@@ -144,6 +159,7 @@
                 <a href="#core-values" class="hover:text-vividPink transition-colors text-themeTitle">CORE VALUES</a>
                 <a href="#timeline" class="hover:text-vividPink transition-colors text-themeTitle">GROWTH</a>
                 <a href="#projects" class="hover:text-vividPink transition-colors text-themeTitle">PORTFOLIO</a>
+                <a href="#guestbook" class="hover:text-vividPink transition-colors text-themeTitle">GUESTBOOK</a>
             </nav>
 
             <div class="flex items-center space-x-3">
@@ -180,6 +196,7 @@
                 <a href="#core-values" class="hover:text-vividPink py-2 text-themeTitle border-b border-navy-700/50 flex items-center justify-between">CORE VALUES <i class="fa-solid fa-chevron-right text-[8px] text-themeMuted"></i></a>
                 <a href="#timeline" class="hover:text-vividPink py-2 text-themeTitle border-b border-navy-700/50 flex items-center justify-between">GROWTH <i class="fa-solid fa-chevron-right text-[8px] text-themeMuted"></i></a>
                 <a href="#projects" class="hover:text-vividPink py-2 text-themeTitle border-b border-navy-700/50 flex items-center justify-between">PORTFOLIO <i class="fa-solid fa-chevron-right text-[8px] text-themeMuted"></i></a>
+                <a href="#guestbook" class="hover:text-vividPink py-2 text-themeTitle border-b border-navy-700/50 flex items-center justify-between">GUESTBOOK <i class="fa-solid fa-chevron-right text-[8px] text-themeMuted"></i></a>
                 <a href="#contact" class="w-full text-center py-3 rounded-lg bg-vividPink text-white font-bold text-xs shadow-neon">
                     협업 제안하기 <i class="fa-solid fa-paper-plane ml-1.5"></i>
                 </a>
@@ -367,7 +384,7 @@
                             <i class="fa-solid fa-laptop-code"></i>
                         </div>
                         <h3 class="text-base font-bold text-themeTitle">02. TECH (기술적 도전)</h3>
-                        <p class="text-[10px] text-blue-400 font-semibold mt-1">SSAFY 16기 AI·SW 엔지니어</p>
+                        <p class="text-[10px] text-blue-400 font-semibold mt-1">SSAFY 16기 AI·SW 엔정니어</p>
                         <p class="text-xs text-themeMuted mt-3 leading-relaxed font-light">
                             알고리즘 및 머신러닝 모형 설계, 리액트를 활용한 웹 솔루션 구조화까지 인문 기획을 실제 제품으로 구현합니다.
                         </p>
@@ -540,6 +557,61 @@
         </div>
     </section>
 
+    <!-- New Section 6: Interactive Guestbook (방명록 & 응원 댓글 작성) -->
+    <section id="guestbook" class="py-16 bg-navy-950/40 relative border-t border-navy-700 scroll-mt-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-xs font-black uppercase tracking-widest text-vividPink font-montserrat">Guestbook</span>
+                <h2 class="text-xl sm:text-2xl font-extrabold text-themeTitle mt-2">한가람에게 남기는 응원 한마디</h2>
+                <p class="text-[11px] text-themeMuted mt-1">방문 후기나 격려의 댓글을 실시간으로 남겨주세요!</p>
+                <div class="w-12 h-1 bg-gradient-to-r from-vividPink to-blue-500 mx-auto mt-2 rounded-full"></div>
+            </div>
+
+            <!-- Comment Input & List Area -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+                
+                <!-- Comment Form -->
+                <div class="md:col-span-5 bg-navy-900 border border-navy-700 p-5 rounded-2xl space-y-4">
+                    <h3 class="text-sm font-bold text-themeTitle flex items-center gap-2">
+                        <i class="fa-regular fa-comment-dots text-vividPink"></i> 댓글 쓰기
+                    </h3>
+                    
+                    <form id="comment-form" onsubmit="handleCommentSubmit(event)" class="space-y-3">
+                        <div>
+                            <label for="comment-writer" class="text-[10px] font-bold text-themeMuted block mb-1">작성자 닉네임</label>
+                            <input type="text" id="comment-writer" required placeholder="예: 인사담당자 홍길동" class="w-full bg-navy-950 border border-navy-700 p-2 rounded-lg text-xs text-themeTitle focus:outline-none focus:border-vividPink font-medium">
+                        </div>
+
+                        <div>
+                            <label class="text-[10px] font-bold text-themeMuted block mb-1">프로필 아바타 선택</label>
+                            <div class="grid grid-cols-5 gap-1.5" id="emoji-selector">
+                                <button type="button" onclick="selectEmoji(this, '💼')" class="emoji-btn p-1.5 rounded-lg bg-navy-950 border border-vividPink hover:bg-navy-800 text-sm text-center transition-all focus:outline-none">💼</button>
+                                <button type="button" onclick="selectEmoji(this, '🚀')" class="emoji-btn p-1.5 rounded-lg bg-navy-950 border border-transparent hover:bg-navy-800 text-sm text-center transition-all focus:outline-none">🚀</button>
+                                <button type="button" onclick="selectEmoji(this, '💡')" class="emoji-btn p-1.5 rounded-lg bg-navy-950 border border-transparent hover:bg-navy-800 text-sm text-center transition-all focus:outline-none">💡</button>
+                                <button type="button" onclick="selectEmoji(this, '🏃')" class="emoji-btn p-1.5 rounded-lg bg-navy-950 border border-transparent hover:bg-navy-800 text-sm text-center transition-all focus:outline-none">🏃</button>
+                                <button type="button" onclick="selectEmoji(this, '✨')" class="emoji-btn p-1.5 rounded-lg bg-navy-950 border border-transparent hover:bg-navy-800 text-sm text-center transition-all focus:outline-none">✨</button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="comment-body" class="text-[10px] font-bold text-themeMuted block mb-1">응원 메시지</label>
+                            <textarea id="comment-body" rows="3" required placeholder="따뜻한 한마디를 남겨주세요." class="w-full bg-navy-950 border border-navy-700 p-2 rounded-lg text-xs text-themeTitle focus:outline-none focus:border-vividPink resize-none font-medium"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-2.5 rounded-lg bg-vividPink hover:bg-vividPink-hover text-white font-extrabold text-xs transition-all flex items-center justify-center gap-1.5 shadow-neon">
+                            <i class="fa-solid fa-paper-plane text-[10px]"></i> 등록하기
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Comment List Feed -->
+                <div class="md:col-span-7 space-y-3 max-h-[380px] overflow-y-auto pr-1" id="comments-container">
+                    <!-- Dynamic comments will be injected here by Javascript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Section 6: CTA Section -->
     <section class="py-12 bg-gradient-to-r from-navy-900 to-navy-950 border-t border-navy-700 relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-r from-vividPink/5 to-transparent pointer-events-none"></div>
@@ -671,6 +743,7 @@
                     <a href="#core-values" class="hover:text-vividPink transition-colors">VALUES</a>
                     <a href="#timeline" class="hover:text-vividPink transition-colors">ROAD</a>
                     <a href="#projects" class="hover:text-vividPink transition-colors">PORTFOLIO</a>
+                    <a href="#guestbook" class="hover:text-vividPink transition-colors">GUESTBOOK</a>
                 </div>
                 <p class="text-[10px] text-themeMuted font-medium leading-relaxed">
                     © 2026 Han Garam. All Rights Reserved. Built with Passion & Convergence Mindset.
@@ -681,6 +754,120 @@
 
     <!-- Pure JavaScript Logics -->
     <script>
+        // Guestbook State Management (In-Memory initially seeded with rich recruiters content)
+        let comments = [
+            {
+                id: 1,
+                writer: "인사담당자 김민수",
+                emoji: "💼",
+                body: "동국대 글로벌 무역 역량에 SSAFY 개발 교육까지 더해지니 훌륭한 융합 스펙이네요! 조만간 유선으로 미팅 제안드리겠습니다.",
+                date: "방금 전"
+            },
+            {
+                id: 2,
+                writer: "SSAFY 동료 이지현",
+                emoji: "🚀",
+                body: "가람님! 항상 아침 일찍 등산하고 러닝하시는 열정이 프로젝트 협업할 때도 고스란히 묻어납니다. 늘 응원해요!",
+                date: "1시간 전"
+            },
+            {
+                id: 3,
+                writer: "테크 리더 최수현",
+                emoji: "💡",
+                body: "인문학적 소통 센스와 견고한 개발 논리력이 조화로운 보기 드문 인재네요. 끝까지 응원하겠습니다.",
+                date: "어제"
+            }
+        ];
+
+        let selectedEmojiChar = "💼";
+
+        function selectEmoji(buttonElement, emoji) {
+            // Deselect all buttons
+            document.querySelectorAll('#emoji-selector button').forEach(btn => {
+                btn.classList.remove('border-vividPink');
+                btn.classList.add('border-transparent');
+            });
+            // Select clicked button
+            buttonElement.classList.add('border-vividPink');
+            buttonElement.classList.remove('border-transparent');
+            selectedEmojiChar = emoji;
+        }
+
+        function renderComments() {
+            const container = document.getElementById('comments-container');
+            container.innerHTML = '';
+
+            if (comments.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-10 bg-navy-900 border border-navy-700 rounded-2xl">
+                        <p class="text-xs text-themeMuted">작성된 응원 댓글이 없습니다. 첫 마디를 남겨보세요!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            comments.forEach((comment, index) => {
+                const commentNode = document.createElement('div');
+                // Apply animate class only if it's the freshly created topmost item
+                const animationClass = index === 0 && comment.id > 3 ? 'animate-comment-node' : '';
+                commentNode.className = `p-4 rounded-xl bg-navy-900 border border-navy-700 flex gap-3.5 items-start ${animationClass}`;
+                
+                commentNode.innerHTML = `
+                    <div class="w-10 h-10 rounded-lg bg-navy-800 flex items-center justify-center text-lg flex-shrink-0 border border-navy-700 select-none">
+                        ${comment.emoji}
+                    </div>
+                    <div class="space-y-1 flex-1">
+                        <div class="flex items-center justify-between">
+                            <h4 class="text-xs font-extrabold text-themeTitle">${escapeHtml(comment.writer)}</h4>
+                            <span class="text-[9px] text-themeMuted font-mono">${comment.date}</span>
+                        </div>
+                        <p class="text-xs text-themeMuted leading-relaxed font-light break-all">${escapeHtml(comment.body)}</p>
+                    </div>
+                `;
+                container.appendChild(commentNode);
+            });
+        }
+
+        function handleCommentSubmit(event) {
+            event.preventDefault();
+            const writerInput = document.getElementById('comment-writer');
+            const bodyInput = document.getElementById('comment-body');
+
+            const newComment = {
+                id: Date.now(),
+                writer: writerInput.value,
+                emoji: selectedEmojiChar,
+                body: bodyInput.value,
+                date: "방금 전"
+            };
+
+            // Insert to the front of array
+            comments.unshift(newComment);
+            
+            // Re-render guestbook
+            renderComments();
+
+            // Clear text inputs
+            writerInput.value = '';
+            bodyInput.value = '';
+        }
+
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+
+        // Initialize comments list on document loaded
+        window.addEventListener('DOMContentLoaded', () => {
+            renderComments();
+        });
+
         // Hamburger Menu Drawer Open/Close Handler
         const menuTrigger = document.getElementById('mobile-hamburger-btn');
         const drawerMenu = document.getElementById('mobile-drawer');
