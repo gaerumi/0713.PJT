@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>융합형 인재 한가람 | Personal Portfolio</title>
-    <!-- -->
+    
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Montserrat (English) & Noto Sans KR / Pretendard 대체안 수용 -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Premium Icons -->
+    
+    <!-- Google Fonts: Pretendard & Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Premium Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- -->
     <script>
         tailwind.config = {
             theme: {
@@ -42,16 +43,13 @@
                     boxShadow: {
                         'neon': '0 0 20px rgba(255, 0, 127, 0.25)',
                         'neon-strong': '0 0 30px rgba(255, 0, 127, 0.65)',
-                        'blue-glow': '0 0 20px rgba(59, 130, 246, 0.25)',
                     }
                 }
             }
         }
     </script>
     
-    <!-- -->
     <style>
-        /* CSS Variables for Dark/Light Theme Control */
         :root {
             --bg-base: #030712;
             --bg-card: #0b1329;
@@ -80,12 +78,8 @@
             --timeline-line: #e5e7eb;
         }
 
-        /* Fluid and Smooth Global Transitions */
         *, *::before, *::after {
-            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                        border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                        color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                        box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
         }
 
         body {
@@ -101,33 +95,25 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .text-gradient-blue {
-            background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Highlight effects for cards */
         .pink-glow-hover {
             border: 1px solid var(--border-color);
         }
         .pink-glow-hover:hover {
             border-color: rgba(255, 0, 127, 0.7);
-            box-shadow: 0 10px 25px -5px rgba(255, 0, 127, 0.15), 0 0 15px rgba(255, 0, 127, 0.2);
-            transform: translateY(-6px);
+            box-shadow: 0 8px 20px -5px rgba(255, 0, 127, 0.15);
+            transform: translateY(-4px);
         }
 
-        /* Custom Scrollbar Styles */
+        /* Scrollbar */
         ::-webkit-scrollbar {
-            width: 10px;
+            width: 8px;
         }
         ::-webkit-scrollbar-track {
             background: var(--bg-base);
         }
         ::-webkit-scrollbar-thumb {
             background: var(--bg-card-inner);
-            border-radius: 5px;
-            border: 2px solid var(--bg-base);
+            border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
             background: #FF007F;
@@ -136,19 +122,16 @@
 </head>
 <body class="selection:bg-vividPink selection:text-white">
 
-    <!-- -->
     <!-- Responsive Floating Navigation Bar -->
-    <header class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-navy-950/80 border-b border-navy-700 py-3 sm:py-4" id="main-header">
+    <header class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-navy-950/80 border-b border-navy-700 py-3 transition-all" id="main-header">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-            <!-- Logo with dynamic brand mark -->
             <a href="#intro" class="flex items-center space-x-2 focus:outline-none">
-                <span class="font-montserrat font-black text-xl sm:text-2xl tracking-wider text-themeTitle">
+                <span class="font-montserrat font-black text-lg sm:text-xl tracking-wider text-themeTitle">
                     GARAM<span class="text-vividPink">.</span>
                 </span>
             </a>
             
-            <!-- Desktop Dynamic Nav Menu -->
-            <nav class="hidden lg:flex items-center space-x-8 text-xs sm:text-sm font-semibold tracking-wide">
+            <nav class="hidden lg:flex items-center space-x-8 text-xs font-semibold tracking-wide">
                 <a href="#intro" class="hover:text-vividPink transition-colors text-themeTitle">HOME</a>
                 <a href="#about" class="hover:text-vividPink transition-colors text-themeTitle">ABOUT ME</a>
                 <a href="#core-values" class="hover:text-vividPink transition-colors text-themeTitle">CORE VALUES</a>
@@ -156,541 +139,383 @@
                 <a href="#projects" class="hover:text-vividPink transition-colors text-themeTitle">PORTFOLIO</a>
             </nav>
 
-            <!-- Control Box: Theme Switcher & Contact Trigger -->
-            <div class="flex items-center space-x-3 sm:space-x-4">
-                <!-- Theme Toggle Action Box -->
-                <button id="theme-switcher-btn" class="w-12 h-12 rounded-2xl bg-navy-800 hover:bg-vividPink/10 text-themeTitle hover:text-vividPink transition-all flex flex-col items-center justify-center border border-navy-700 shadow-sm cursor-pointer select-none focus:outline-none" aria-label="테마 스타일 변경">
-                    <i class="fa-solid fa-moon text-sm mb-0.5" id="theme-switcher-icon"></i>
+            <div class="flex items-center space-x-3">
+                <!-- Theme Toggle Button -->
+                <button id="theme-switcher-btn" class="w-12 h-12 rounded-xl bg-navy-800 hover:bg-vividPink/10 text-themeTitle hover:text-vividPink transition-all flex flex-col items-center justify-center border border-navy-700 cursor-pointer focus:outline-none" aria-label="테마 스타일 변경">
+                    <i class="fa-solid fa-moon text-xs mb-0.5" id="theme-switcher-icon"></i>
                     <span id="theme-switcher-text" class="text-[8px] font-black tracking-widest font-montserrat leading-none">DARK</span>
                 </button>
 
-                <a href="#contact" class="hidden sm:inline-flex px-5 py-2.5 rounded-xl text-xs font-bold bg-vividPink hover:bg-vividPink-hover text-white transition-all transform hover:scale-[1.03] shadow-neon">
+                <a href="#contact" class="hidden sm:inline-flex px-4 py-2 rounded-lg text-xs font-bold bg-vividPink hover:bg-vividPink-hover text-white transition-all shadow-neon">
                     협업 제안하기 <i class="fa-solid fa-paper-plane ml-1.5"></i>
                 </a>
 
-                <!-- Mobile Hamburger Trigger -->
                 <button class="lg:hidden text-themeTitle hover:text-vividPink focus:outline-none p-1" id="mobile-hamburger-btn" aria-label="메뉴 토글">
-                    <i class="fa-solid fa-bars text-xl sm:text-2xl"></i>
+                    <i class="fa-solid fa-bars text-lg"></i>
                 </button>
             </div>
         </div>
 
-        <!-- Mobile Dynamic Drawer Menu -->
-        <div class="hidden lg:hidden bg-navy-950/98 border-b border-navy-700 absolute w-full left-0 top-full backdrop-blur-xl shadow-2xl transition-all" id="mobile-drawer">
-            <div class="px-6 py-8 space-y-5 flex flex-col text-sm font-semibold">
-                <a href="#intro" class="hover:text-vividPink py-2.5 text-themeTitle border-b border-navy-700/50 flex items-center justify-between">HOME <i class="fa-solid fa-chevron-right text-[10px] text-themeMuted"></i></a>
-                <a href="#about" class="hover:text-vividPink py-2.5 text-themeTitle border-b border-navy-700/50 flex items-center justify-between">ABOUT ME <i class="fa-solid fa-chevron-right text-[10px] text-themeMuted"></i></a>
-                <a href="#core-values" class="hover:text-vividPink py-2.5 text-themeTitle border-b border-navy-700/50 flex items-center justify-between">CORE VALUES <i class="fa-solid fa-chevron-right text-[10px] text-themeMuted"></i></a>
-                <a href="#timeline" class="hover:text-vividPink py-2.5 text-themeTitle border-b border-navy-700/50 flex items-center justify-between">GROWTH <i class="fa-solid fa-chevron-right text-[10px] text-themeMuted"></i></a>
-                <a href="#projects" class="hover:text-vividPink py-2.5 text-themeTitle border-b border-navy-700/50 flex items-center justify-between">PORTFOLIO <i class="fa-solid fa-chevron-right text-[10px] text-themeMuted"></i></a>
-                <a href="#contact" class="w-full text-center py-3.5 rounded-xl bg-vividPink text-white font-bold text-xs shadow-neon">
+        <!-- Mobile Drawer Menu -->
+        <div class="hidden lg:hidden bg-navy-950/95 border-b border-navy-700 absolute w-full left-0 top-full backdrop-blur-xl shadow-2xl transition-all" id="mobile-drawer">
+            <div class="px-6 py-6 space-y-4 flex flex-col text-xs font-semibold">
+                <a href="#intro" class="hover:text-vividPink py-2 text-themeTitle border-b border-navy-700/50 flex items-center justify-between">HOME <i class="fa-solid fa-chevron-right text-[8px] text-themeMuted"></i></a>
+                <a href="#about" class="hover:text-vividPink py-2 text-themeTitle border-b border-navy-700/50 flex items-center justify-between">ABOUT ME <i class="fa-solid fa-chevron-right text-[8px] text-themeMuted"></i></a>
+                <a href="#core-values" class="hover:text-vividPink py-2 text-themeTitle border-b border-navy-700/50 flex items-center justify-between">CORE VALUES <i class="fa-solid fa-chevron-right text-[8px] text-themeMuted"></i></a>
+                <a href="#timeline" class="hover:text-vividPink py-2 text-themeTitle border-b border-navy-700/50 flex items-center justify-between">GROWTH <i class="fa-solid fa-chevron-right text-[8px] text-themeMuted"></i></a>
+                <a href="#projects" class="hover:text-vividPink py-2 text-themeTitle border-b border-navy-700/50 flex items-center justify-between">PORTFOLIO <i class="fa-solid fa-chevron-right text-[8px] text-themeMuted"></i></a>
+                <a href="#contact" class="w-full text-center py-3 rounded-lg bg-vividPink text-white font-bold text-xs shadow-neon">
                     협업 제안하기 <i class="fa-solid fa-paper-plane ml-1.5"></i>
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- -->
     <!-- Section 1: Hero Section -->
-    <section id="intro" class="relative min-h-screen flex items-center justify-center pt-24 sm:pt-28 overflow-hidden">
-        <!-- Abstract Neo Decorative Elements -->
-        <div class="absolute top-1/4 left-1/4 w-80 sm:w-96 h-80 sm:h-96 bg-vividPink/10 rounded-full blur-[100px] sm:blur-[130px] pointer-events-none"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-80 sm:w-96 h-80 sm:h-96 bg-blue-600/10 rounded-full blur-[100px] sm:blur-[130px] pointer-events-none"></div>
+    <section id="intro" class="relative min-h-[85vh] flex items-center justify-center pt-20 overflow-hidden">
+        <div class="absolute top-1/4 left-1/4 w-72 h-72 bg-vividPink/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-72 h-72 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none"></div>
         
-        <!-- Premium Tech Grid Base Overlay -->
-        <div class="absolute inset-0 bg-[linear-gradient(to_right,var(--grid-color)_1px,transparent_1px),linear-gradient(to_bottom,var(--grid-color)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_80%,transparent_100%)] pointer-events-none"></div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center z-10 py-12 sm:py-20">
-            <!-- Left Grid: Text Content -->
-            <div class="lg:col-span-7 space-y-6 sm:space-y-8 text-center lg:text-left order-2 lg:order-1">
-                <!-- Badges of convergence -->
-                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
-                    <span class="px-3.5 py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-navy-800 text-vividPink border border-vividPink/25 font-montserrat shadow-sm">
-                        <i class="fa-solid fa-graduation-cap mr-1.5 animate-pulse"></i> SSAFY 16기 AI·SW 트랙
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center z-10 py-8">
+            <!-- Left: Hero Text -->
+            <div class="lg:col-span-7 space-y-5 text-center lg:text-left order-2 lg:order-1">
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2">
+                    <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-navy-800 text-vividPink border border-vividPink/25">
+                        <i class="fa-solid fa-graduation-cap mr-1"></i> SSAFY 16기 AI·SW 트랙
                     </span>
-                    <span class="px-3.5 py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-navy-800 text-blue-400 border border-blue-500/25">
-                        <i class="fa-solid fa-earth-asia mr-1.5"></i> 한-중 비즈니스 스페셜리스트
+                    <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-navy-800 text-blue-400 border border-blue-500/25">
+                        <i class="fa-solid fa-earth-asia mr-1"></i> 한-중 비즈니스 스페셜리스트
                     </span>
                 </div>
 
-                <!-- Catchphrase Main Title with Gradient Point -->
-                <div class="space-y-3">
-                    <h2 class="text-lg sm:text-xl md:text-2xl font-bold text-vividPink tracking-wide">안녕하세요, 융합형 인재 한가람입니다.</h2>
-                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] text-themeTitle">
+                <div class="space-y-2">
+                    <h2 class="text-base sm:text-lg font-bold text-vividPink">안녕하세요, 융합형 인재 한가람입니다.</h2>
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-themeTitle">
                         멈추지 않는 호기심으로<br class="hidden sm:inline">
                         세계를 넓히는 사람,<br>
                         <span class="text-gradient-pink">한가람입니다.</span>
                     </h1>
                 </div>
 
-                <!-- Core Value Pitching Paragraph -->
-                <p class="text-sm sm:text-base md:text-lg text-themeMuted max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
-                    중어중문학 학사와 국제통상학 복수전공을 거쳐 다져진 풍부한 지평에, 베이징 칭화대학교 교환학생 생활 및 3회의 실전 비즈니스 기술 통역 경험을 더했습니다. 
-                    이제 <strong class="text-themeTitle font-medium">SSAFY 16기</strong>에서 고도화된 AI 및 소프트웨어 역량을 장착하며 세상을 혁신하는 주역으로 도약하고 있습니다.
+                <p class="text-xs sm:text-sm md:text-base text-themeMuted max-w-xl mx-auto lg:mx-0 leading-relaxed font-light">
+                    중어중문·국제통상 복수전공과 칭화대 교환학생, 3회의 실전 비즈니스 기술 통역으로 어학 역량을 입증했습니다. 이제 <strong class="text-themeTitle font-medium">SSAFY 16기</strong>에서 고도화된 AI 및 SW 날개를 달고 세상을 혁신하는 주역으로 도약하고 있습니다.
                 </p>
 
-                <!-- Responsive Buttons Control Area -->
-                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                    <a href="#core-values" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold bg-vividPink hover:bg-vividPink-hover text-white transition-all text-center shadow-neon hover:shadow-neon-strong transform hover:-translate-y-0.5">
-                        포트폴리오 보기 <i class="fa-solid fa-arrow-down ml-2"></i>
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
+                    <a href="#core-values" class="w-full sm:w-auto px-6 py-3 rounded-lg font-bold text-xs bg-vividPink hover:bg-vividPink-hover text-white transition-all text-center shadow-neon">
+                        포트폴리오 보기 <i class="fa-solid fa-arrow-down ml-1"></i>
                     </a>
-                    <a href="#about" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold bg-navy-800 hover:bg-navy-700 text-themeTitle transition-all text-center border border-navy-700 hover:border-vividPink/40">
-                        나의 스토리 보기 <i class="fa-solid fa-user-check ml-2 text-themeMuted"></i>
+                    <a href="#about" class="w-full sm:w-auto px-6 py-3 rounded-lg font-bold text-xs bg-navy-800 hover:bg-navy-700 text-themeTitle transition-all text-center border border-navy-700">
+                        나의 스토리 보기 <i class="fa-solid fa-user-check ml-1 text-themeMuted"></i>
                     </a>
-                </div>
-
-                <!-- Instant Visual Stats Area -->
-                <div class="pt-8 border-t border-navy-700 grid grid-cols-3 gap-3 text-center lg:text-left">
-                    <div>
-                        <div class="text-2xl sm:text-3xl font-black font-montserrat text-vividPink">3<span class="text-xs sm:text-sm font-bold ml-0.5">회</span></div>
-                        <p class="text-[10px] sm:text-xs text-themeMuted mt-1">글로벌 통역 실무</p>
-                    </div>
-                    <div>
-                        <div class="text-2xl sm:text-3xl font-black font-montserrat text-themeTitle">SSAFY 16</div>
-                        <p class="text-[10px] sm:text-xs text-themeMuted mt-1">AI / SW 엔지니어링</p>
-                    </div>
-                    <div>
-                        <div class="text-2xl sm:text-3xl font-black font-montserrat text-themeTitle">ENFJ</div>
-                        <p class="text-[10px] sm:text-xs text-themeMuted mt-1">중앙동아리 리더십</p>
-                    </div>
                 </div>
             </div>
 
-            <!-- Right Grid: High Quality Profile Area -->
-            <!-- -->
+            <!-- Right: Compact Card -->
             <div class="lg:col-span-5 relative flex justify-center items-center order-1 lg:order-2">
-                <div class="relative w-full max-w-[320px] sm:max-w-sm rounded-[2.5rem] overflow-hidden bg-navy-900 border border-navy-700 p-6 sm:p-8 shadow-2xl transition-all duration-500 hover:scale-[1.02] pink-glow-hover">
-                    <!-- Dynamic Neo Accent Top Line -->
-                    <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-vividPink to-blue-500"></div>
+                <div class="relative w-full max-w-[280px] rounded-3xl overflow-hidden bg-navy-900 border border-navy-700 p-5 shadow-xl transition-all pink-glow-hover">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-vividPink to-blue-500"></div>
                     
-                    <!-- Portrait Visual SVG Frame -->
-                    <div class="w-24 h-24 sm:w-28 sm:h-28 mx-auto rounded-full bg-gradient-to-tr from-vividPink to-blue-500 p-1 flex items-center justify-center shadow-lg relative">
-                        <div class="w-full h-full rounded-full bg-navy-900 flex items-center justify-center text-3xl sm:text-4xl text-themeTitle">
+                    <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-tr from-vividPink to-blue-500 p-0.5 flex items-center justify-center shadow-md relative">
+                        <div class="w-full h-full rounded-full bg-navy-900 flex items-center justify-center text-2xl text-themeTitle">
                             <i class="fa-solid fa-user-graduate"></i>
                         </div>
-                        <!-- Operational Online Active Badge -->
-                        <span class="absolute bottom-1 right-1 w-4 h-4 sm:w-5 sm:h-5 bg-emerald-500 border-4 border-navy-900 rounded-full" title="협업 가능"></span>
+                        <span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-500 border-2 border-navy-900 rounded-full"></span>
                     </div>
 
-                    <div class="text-center mt-5">
-                        <h3 class="text-xl sm:text-2xl font-extrabold text-themeTitle tracking-tight">한가람</h3>
-                        <p class="text-[10px] sm:text-xs text-vividPink font-montserrat font-extrabold tracking-widest mt-1.5 uppercase">Global SW/AI Collaborator</p>
+                    <div class="text-center mt-3">
+                        <h3 class="text-lg font-extrabold text-themeTitle">한가람</h3>
+                        <p class="text-[9px] text-vividPink font-montserrat font-extrabold tracking-wider mt-1 uppercase">Global SW/AI Collaborator</p>
                     </div>
 
-                    <!-- Mini Status Board -->
-                    <div class="mt-6 sm:mt-8 space-y-3.5 bg-navy-950 p-4 sm:p-5 rounded-2xl border border-navy-700">
-                        <div class="flex items-center justify-between text-xs">
-                            <span class="text-themeMuted font-bold"><i class="fa-solid fa-code text-blue-400 mr-2"></i> Tech Platform</span>
-                            <span class="text-themeTitle font-medium font-montserrat">SSAFY 16th AI</span>
+                    <div class="mt-4 space-y-2 bg-navy-950 p-3 rounded-xl border border-navy-700 text-[11px]">
+                        <div class="flex items-center justify-between">
+                            <span class="text-themeMuted"><i class="fa-solid fa-code text-blue-400 mr-1.5"></i> Tech Platform</span>
+                            <span class="text-themeTitle font-medium">SSAFY 16th AI</span>
                         </div>
-                        <div class="flex items-center justify-between text-xs">
-                            <span class="text-themeMuted font-bold"><i class="fa-solid fa-earth-americas text-vividPink mr-2"></i> Languages</span>
+                        <div class="flex items-center justify-between">
+                            <span class="text-themeMuted"><i class="fa-solid fa-earth-americas text-vividPink mr-1.5"></i> Languages</span>
                             <span class="text-themeTitle font-medium">중국어·국제통상</span>
                         </div>
-                        <div class="flex items-center justify-between text-xs">
-                            <span class="text-themeMuted font-bold"><i class="fa-solid fa-users text-emerald-400 mr-2"></i> Role Type</span>
-                            <span class="text-themeTitle font-medium">중앙동아리 부회장</span>
-                        </div>
-                    </div>
-
-                    <!-- Dynamic Chinese Speech Prompt Action -->
-                    <button onclick="toggleChineseGreeting()" class="mt-5 w-full py-3 bg-navy-800 hover:bg-navy-700 text-xs font-bold rounded-xl text-themeMuted hover:text-themeTitle transition-all flex items-center justify-center gap-2 border border-navy-700 focus:outline-none">
-                        <i class="fa-solid fa-comment-dots text-vividPink"></i> <span>중국어 환영 인사 들어보기</span>
-                    </button>
-                    
-                    <!-- Hidden Speech Reveal Target -->
-                    <div id="greeting-popup-box" class="hidden mt-4 p-4 bg-navy-950/90 rounded-xl border border-vividPink/40 text-center animate-pulse">
-                        <p class="text-xs text-vividPink font-extrabold font-montserrat">"大家好！我是用好奇心和创新连接世界的韩佳岚。"</p>
-                        <p class="text-[10px] sm:text-xs text-themeMuted mt-1.5 leading-relaxed">"안녕하세요! 호기심과 기술로 세상을 넓혀 나가는 한가람입니다."</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- -->
     <!-- Section 2: About Me Section -->
-    <section id="about" class="py-20 sm:py-28 bg-navy-950/50 relative border-t border-navy-700">
+    <section id="about" class="py-12 bg-navy-950/50 relative border-t border-navy-700">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <!-- Section Title Header -->
-            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+            <div class="text-center max-w-2xl mx-auto mb-8">
                 <span class="text-xs font-black uppercase tracking-widest text-vividPink font-montserrat">About Me</span>
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-themeTitle mt-3 leading-snug">
-                    문과적 소통력과 이과적 기술력을 모두 갖추기 위해 외연을 확장해 왔습니다.
-                </h2>
-                <div class="w-16 h-1 bg-gradient-to-r from-vividPink to-blue-500 mx-auto mt-4 rounded-full"></div>
+                <h2 class="text-xl sm:text-2xl font-extrabold text-themeTitle mt-2">문과적 소통력 × 이과적 기술력</h2>
+                <div class="w-12 h-1 bg-gradient-to-r from-vividPink to-blue-500 mx-auto mt-2 rounded-full"></div>
             </div>
 
-            <!-- Layout of Interactive Narratives -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
-                <!-- Left: Detail Narrative Text Block (Col-7) -->
-                <div class="lg:col-span-7 bg-navy-900 border border-navy-700 p-6 sm:p-10 rounded-3xl flex flex-col justify-between">
-                    <div class="space-y-6">
-                        <h3 class="text-xl sm:text-2xl font-black text-themeTitle">인문·무역·기술의 융합 성장 스토리</h3>
-                        <p class="text-sm sm:text-base text-themeMuted leading-relaxed font-light">
-                            동국대학교 중어중문학 학사와 국제통상학 복수전공을 수행하며 글로벌 무역 동향과 탄탄한 분석 지표를 연구했습니다. 
-                            이에 더해 교직이수를 완료하며 방대한 지식을 친절하고 정돈되게 구조화하여 대중에게 완벽히 전달하는 탁월한 전달 스킬을 확보했습니다.
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+                <!-- Left Story Content -->
+                <div class="lg:col-span-7 bg-navy-900 border border-navy-700 p-6 rounded-2xl flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-bold text-themeTitle">인문·무역·기술을 연결하는 올라운더</h3>
+                        <p class="text-xs sm:text-sm text-themeMuted leading-relaxed font-light">
+                            중어중문학 학사와 국제통상학 복수전공을 거쳐 시장 분석과 글로벌 역량을 확보했고, 교직이수 과정을 완료하여 복잡한 개념을 정돈되고 친절하게 구조화하는 전달력을 길렀습니다.
                         </p>
-                        <p class="text-sm sm:text-base text-themeMuted leading-relaxed font-light">
-                            단순한 어학 경쟁력에 정체되지 않고, 한 걸음 나아가 세상을 구동하는 궁극적인 도구인 '소프트웨어'를 마스터하기 위해 삼성 청년 SW 아카데미(SSAFY) 16기 과정에 뛰어들었습니다. 
-                            AI 알고리즘 설계부터 프론트엔드/백엔드 풀스택 구조화까지, 매일 탄탄한 개발 트레이닝으로 무장하고 있습니다.
+                        <p class="text-xs sm:text-sm text-themeMuted leading-relaxed font-light">
+                            단순한 어학 경쟁력에 만족하지 않고, 세상을 구동하는 실제 무기인 '소프트웨어'를 지휘하기 위해 삼성 청년 SW 아카데미(SSAFY) 16기 과정에 뛰어들어 매일 데이터 분석 및 알고리즘 구현 실전 감각을 강화하는 중입니다.
                         </p>
                     </div>
 
-                    <!-- Beautiful Keywords Tag Layout -->
-                    <div class="pt-8 border-t border-navy-700/60 mt-8">
-                        <div class="flex flex-wrap items-center gap-2">
-                            <span class="px-3 py-1.5 bg-vividPink/10 text-vividPink border border-vividPink/20 text-xs font-bold rounded-lg font-montserrat">#ENFJ_친화력</span>
-                            <span class="px-3 py-1.5 bg-blue-500/10 text-blue-400 border border-blue-500/20 text-xs font-bold rounded-lg">#지치지않는_러너</span>
-                            <span class="px-3 py-1.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold rounded-lg font-montserrat">#올라운더</span>
-                            <span class="px-3 py-1.5 bg-amber-500/10 text-amber-500 border border-amber-500/20 text-xs font-bold rounded-lg">#협업의_윤활유</span>
-                        </div>
+                    <div class="flex flex-wrap gap-1.5 pt-4 border-t border-navy-700/60 mt-4">
+                        <span class="px-2.5 py-1 bg-vividPink/10 text-vividPink text-[10px] font-bold rounded">#ENFJ_친화력</span>
+                        <span class="px-2.5 py-1 bg-blue-500/10 text-blue-400 text-[10px] font-bold rounded">#지치지않는_러너</span>
+                        <span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 text-[10px] font-bold rounded">#올라운더</span>
                     </div>
                 </div>
 
-                <!-- Right: High Quality Interactive Info-graphics Card (Col-5) -->
-                <!-- -->
-                <div class="lg:col-span-5 bg-navy-900 border border-navy-700 p-6 sm:p-8 rounded-3xl flex flex-col justify-between">
-                    <div class="space-y-6">
-                        <h4 class="text-sm font-black uppercase text-vividPink tracking-wider">Education & Credentials</h4>
+                <!-- Right Quick Credentials -->
+                <div class="lg:col-span-5 bg-navy-900 border border-navy-700 p-6 rounded-2xl flex flex-col justify-between">
+                    <div class="space-y-3.5 text-xs">
+                        <h4 class="text-[10px] font-black uppercase text-vividPink tracking-wider">Education & Credentials</h4>
                         
-                        <div class="space-y-4">
-                            <!-- Degree milestone -->
-                            <div class="flex items-start gap-4">
-                                <div class="w-10 h-10 rounded-xl bg-navy-800 flex items-center justify-center text-themeTitle flex-shrink-0 border border-navy-700">
-                                    <i class="fa-solid fa-graduation-cap"></i>
-                                </div>
-                                <div>
-                                    <h5 class="text-sm font-bold text-themeTitle">동국대학교 학사 졸업</h5>
-                                    <p class="text-[11px] sm:text-xs text-themeMuted mt-1">중어중문학 주전공 × 국제통상학 복수전공</p>
-                                </div>
-                            </div>
-
-                            <!-- License milestone -->
-                            <div class="flex items-start gap-4">
-                                <div class="w-10 h-10 rounded-xl bg-navy-800 flex items-center justify-center text-vividPink flex-shrink-0 border border-navy-700">
-                                    <i class="fa-solid fa-id-card"></i>
-                                </div>
-                                <div>
-                                    <h5 class="text-sm font-bold text-themeTitle">중등학교 정교사 (2급) 교직 이수</h5>
-                                    <p class="text-[11px] sm:text-xs text-themeMuted mt-1">체계적인 커리큘럼 분석 및 구조화된 전달력</p>
-                                </div>
-                            </div>
-
-                            <!-- Tsinghua Exchange milestone -->
-                            <div class="flex items-start gap-4">
-                                <div class="w-10 h-10 rounded-xl bg-navy-800 flex items-center justify-center text-blue-400 flex-shrink-0 border border-navy-700">
-                                    <i class="fa-solid fa-plane-departure"></i>
-                                </div>
-                                <div>
-                                    <h5 class="text-sm font-bold text-themeTitle">베이징 칭화대학교 교환학생 수료</h5>
-                                    <p class="text-[11px] sm:text-xs text-themeMuted mt-1">최고 명문 기관 내 학업 및 현지 네트워킹 구축</p>
-                                </div>
-                            </div>
-
-                            <!-- SSAFY milestone -->
-                            <div class="flex items-start gap-4">
-                                <div class="w-10 h-10 rounded-xl bg-navy-800 flex items-center justify-center text-emerald-400 flex-shrink-0 border border-navy-700">
-                                    <i class="fa-solid fa-laptop-code"></i>
-                                </div>
-                                <div>
-                                    <h5 class="text-sm font-bold text-themeTitle">삼성 청년 SW 아카데미 (SSAFY)</h5>
-                                    <p class="text-[11px] sm:text-xs text-themeMuted mt-1">16기 AI 트랙 엔지니어링 집중 이수 과정 진행 중</p>
-                                </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-navy-800 flex items-center justify-center text-themeTitle flex-shrink-0"><i class="fa-solid fa-graduation-cap text-xs"></i></div>
+                            <div>
+                                <h5 class="font-bold text-themeTitle">동국대학교 학사 졸업</h5>
+                                <p class="text-[10px] text-themeMuted">중어중문학 주전공 × 국제통상학 복수전공</p>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Highlight Quote -->
-                    <div class="mt-8 p-4 bg-navy-950/70 rounded-2xl border border-dashed border-navy-700">
-                        <p class="text-xs text-themeMuted italic leading-relaxed text-center">
-                            "인문학의 시선으로 기획하고, 데이터로 검증하며, 안정적인 기술 코드로 완성하는 올라운더입니다."
-                        </p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-navy-800 flex items-center justify-center text-vividPink flex-shrink-0"><i class="fa-solid fa-id-card text-xs"></i></div>
+                            <div>
+                                <h5 class="font-bold text-themeTitle">정교사 (2급) 교직 이수 완료</h5>
+                                <p class="text-[10px] text-themeMuted">체계적이고 명확한 스토리 지식 전달력</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-navy-800 flex items-center justify-center text-blue-400 flex-shrink-0"><i class="fa-solid fa-plane-departure text-xs"></i></div>
+                            <div>
+                                <h5 class="font-bold text-themeTitle">칭화대학교 교환학생 수료</h5>
+                                <p class="text-[10px] text-themeMuted">중국 베이징 현지 어학 및 최고 인맥 네트워킹</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-navy-800 flex items-center justify-center text-emerald-400 flex-shrink-0"><i class="fa-solid fa-laptop-code text-xs"></i></div>
+                            <div>
+                                <h5 class="font-bold text-themeTitle">삼성 청년 SW 아카데미 (SSAFY)</h5>
+                                <p class="text-[10px] text-themeMuted">16기 AI 트랙 엔지니어링 집중 훈련 중</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- -->
-    <!-- Section 3: Core Value Cards Section -->
-    <section id="core-values" class="py-20 sm:py-28 bg-navy-900/10 relative border-t border-navy-700">
+    <!-- Section 3: Core Value Cards Section (Clickable) -->
+    <section id="core-values" class="py-12 bg-navy-900/10 relative border-t border-navy-700">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <!-- Section Header -->
-            <div class="text-center max-w-2xl mx-auto mb-16">
+            <div class="text-center max-w-2xl mx-auto mb-8">
                 <span class="text-xs font-black uppercase tracking-widest text-vividPink font-montserrat">Core Values</span>
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-themeTitle mt-3">한가람을 증명하는 3가지 핵심 무기</h2>
-                <div class="w-16 h-1 bg-gradient-to-r from-vividPink to-blue-500 mx-auto mt-4 rounded-full"></div>
+                <h2 class="text-xl sm:text-2xl font-extrabold text-themeTitle mt-2">클릭하여 핵심 무기 상세확인</h2>
+                <p class="text-[11px] text-themeMuted mt-1">카드를 클릭하면 각 프로젝트 검증 구역으로 자동 스크롤됩니다.</p>
+                <div class="w-12 h-1 bg-gradient-to-r from-vividPink to-blue-500 mx-auto mt-2 rounded-full"></div>
             </div>
 
-            <!-- Interative Card Stack (Grid 3 Column Layout) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Clickable Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Card 1: GLOBAL -->
-                <div class="p-6 sm:p-8 rounded-3xl bg-navy-900 border border-navy-700 group hover:shadow-neon transition-all duration-300 flex flex-col justify-between pink-glow-hover">
+                <a href="#project-global" class="p-6 rounded-2xl bg-navy-900 border border-navy-700 group hover:shadow-neon transition-all flex flex-col justify-between pink-glow-hover cursor-pointer">
                     <div>
-                        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-vividPink/10 flex items-center justify-center text-vividPink text-2xl sm:text-3xl mb-6 group-hover:scale-110 transition-transform">
+                        <div class="w-12 h-12 rounded-xl bg-vividPink/10 flex items-center justify-center text-vividPink text-xl mb-4 group-hover:scale-105 transition-transform">
                             <i class="fa-solid fa-earth-asia"></i>
                         </div>
-                        <h3 class="text-lg sm:text-xl font-bold text-themeTitle">01. GLOBAL (글로벌 역량)</h3>
-                        <p class="text-[11px] sm:text-xs text-vividPink font-semibold mt-1">중국 베이징 칭화대 교환학생 & 통역 3회</p>
-                        <p class="text-xs sm:text-sm text-themeMuted mt-4 leading-relaxed font-light">
-                            단순한 어학 자격증 고득점을 넘어, 중국 베이징 최고의 명문 칭화대학교 교환학생을 수료하며 현지 원어민들과 실전 교류를 나눴습니다. 
-                            더불어 무역 및 바이어 계약 테이블 등 최고의 긴장감을 보장하는 실무 비즈니스 현장에서 무려 3차례의 정밀 통역을 전담하며 가치 있는 어학 능력을 증명했습니다.
+                        <h3 class="text-base font-bold text-themeTitle">01. GLOBAL (글로벌 역량)</h3>
+                        <p class="text-[10px] text-vividPink font-semibold mt-1">칭화대 교환학생 & 통역 3회</p>
+                        <p class="text-xs text-themeMuted mt-3 leading-relaxed font-light">
+                            HSK 6급 최상위 레벨과 실제 바이어 무역 현장의 3회 통역 실무 경험으로 완전무결한 어학 감각을 증명합니다.
                         </p>
                     </div>
-                    <div class="mt-8 pt-4 border-t border-navy-800 flex items-center justify-between text-xs font-bold text-vividPink font-montserrat tracking-wider">
-                        <span>PRACTICAL INTERPRETATION</span>
-                        <i class="fa-solid fa-circle-check"></i>
+                    <div class="mt-5 pt-3 border-t border-navy-800 flex items-center justify-between text-[10px] font-bold text-vividPink">
+                        <span>상세 확인하기</span>
+                        <i class="fa-solid fa-chevron-down"></i>
                     </div>
-                </div>
+                </a>
 
                 <!-- Card 2: TECH -->
-                <!-- -->
-                <div class="p-6 sm:p-8 rounded-3xl bg-navy-900 border border-navy-700 group hover:shadow-neon transition-all duration-300 flex flex-col justify-between pink-glow-hover">
+                <a href="#project-tech" class="p-6 rounded-2xl bg-navy-900 border border-navy-700 group hover:shadow-neon transition-all flex flex-col justify-between pink-glow-hover cursor-pointer">
                     <div>
-                        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-400 text-2xl sm:text-3xl mb-6 group-hover:scale-110 transition-transform">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 text-xl mb-4 group-hover:scale-105 transition-transform">
                             <i class="fa-solid fa-laptop-code"></i>
                         </div>
-                        <h3 class="text-lg sm:text-xl font-bold text-themeTitle">02. TECH (기술적 도전)</h3>
-                        <p class="text-[11px] sm:text-xs text-blue-400 font-semibold mt-1">SSAFY 16기 기반 AI·SW 빌더</p>
-                        <p class="text-xs sm:text-sm text-themeMuted mt-4 leading-relaxed font-light">
-                            최고 수준의 개발 트레이닝 인큐베이터인 삼성 청년 SW 아카데미(SSAFY) 16기 AI 트랙에 합류하여 파이썬, 자료구조, 인공지능 알고리즘 설계부터 프론트엔드 리액트(React)를 접목한 완벽한 융합 웹 솔루션을 다지는 중입니다. 인문학적 기획력을 안정적으로 구현합니다.
+                        <h3 class="text-base font-bold text-themeTitle">02. TECH (기술적 도전)</h3>
+                        <p class="text-[10px] text-blue-400 font-semibold mt-1">SSAFY 16기 AI·SW 엔지니어</p>
+                        <p class="text-xs text-themeMuted mt-3 leading-relaxed font-light">
+                            알고리즘 및 머신러닝 모형 설계, 리액트를 활용한 웹 솔루션 구조화까지 인문 기획을 실제 제품으로 구현합니다.
                         </p>
                     </div>
-                    <div class="mt-8 pt-4 border-t border-navy-800 flex items-center justify-between text-xs font-bold text-blue-400 font-montserrat tracking-wider">
-                        <span>ENGINEERING INSIGHT</span>
-                        <i class="fa-solid fa-code"></i>
+                    <div class="mt-5 pt-3 border-t border-navy-800 flex items-center justify-between text-[10px] font-bold text-blue-400">
+                        <span>상세 확인하기</span>
+                        <i class="fa-solid fa-chevron-down"></i>
                     </div>
-                </div>
+                </a>
 
                 <!-- Card 3: ENERGY -->
-                <div class="p-6 sm:p-8 rounded-3xl bg-navy-900 border border-navy-700 group hover:shadow-neon transition-all duration-300 flex flex-col justify-between pink-glow-hover md:col-span-2 lg:col-span-1">
+                <a href="#project-energy" class="p-6 rounded-2xl bg-navy-900 border border-navy-700 group hover:shadow-neon transition-all flex flex-col justify-between pink-glow-hover cursor-pointer">
                     <div>
-                        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-2xl sm:text-3xl mb-6 group-hover:scale-110 transition-transform">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-xl mb-4 group-hover:scale-105 transition-transform">
                             <i class="fa-solid fa-bolt"></i>
                         </div>
-                        <h3 class="text-lg sm:text-xl font-bold text-themeTitle">03. ENERGY (실행과 협업)</h3>
-                        <p class="text-[11px] sm:text-xs text-emerald-400 font-semibold mt-1">중앙동아리 부회장 리더십 & 운동 매니아</p>
-                        <p class="text-xs sm:text-sm text-themeMuted mt-4 leading-relaxed font-light">
-                            수영, 매일 아침의 10km 러닝, 한여름의 등산으로 축적된 한계 없는 강인한 체력과 회복 탄력성을 소유하고 있습니다. 
-                            이에 머무르지 않고 대학교 시절 중앙동아리 부회장 직책을 장기적으로 책임지며 다수의 구성원을 매끄럽게 통솔하고 팀의 조율을 이뤄내는 ENFJ형 협업 조직 리더십을 갖췄습니다.
+                        <h3 class="text-base font-bold text-themeTitle">03. ENERGY (실행과 협업)</h3>
+                        <p class="text-[10px] text-emerald-400 font-semibold mt-1">중앙동아리 부회장 & 운동 매니아</p>
+                        <p class="text-xs text-themeMuted mt-3 leading-relaxed font-light">
+                            수영·러닝·등산으로 쌓은 강인한 피지컬과 대규모 동아리 부회장 시절 조율 능력을 갖춘 윤활유 인재입니다.
                         </p>
                     </div>
-                    <div class="mt-8 pt-4 border-t border-navy-800 flex items-center justify-between text-xs font-bold text-emerald-400 font-montserrat tracking-wider">
-                        <span>POWERFUL EXECUTION</span>
-                        <i class="fa-solid fa-users"></i>
+                    <div class="mt-5 pt-3 border-t border-navy-800 flex items-center justify-between text-[10px] font-bold text-emerald-400">
+                        <span>상세 확인하기</span>
+                        <i class="fa-solid fa-chevron-down"></i>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- -->
     <!-- Section 4: Growth Timeline Section -->
-    <section id="timeline" class="py-20 sm:py-28 bg-navy-950/60 relative border-t border-navy-700">
+    <section id="timeline" class="py-12 bg-navy-950/60 relative border-t border-navy-700">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <!-- Section Header -->
-            <div class="text-center max-w-2xl mx-auto mb-16 sm:mb-20">
+            <div class="text-center max-w-2xl mx-auto mb-8">
                 <span class="text-xs font-black uppercase tracking-widest text-vividPink font-montserrat">Growth Road</span>
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-themeTitle mt-3">끝없는 도전으로 이어지는 성장 타임라인</h2>
-                <div class="w-16 h-1 bg-gradient-to-r from-vividPink to-blue-500 mx-auto mt-4 rounded-full"></div>
+                <h2 class="text-xl sm:text-2xl font-extrabold text-themeTitle mt-2">핵심 성장 타임라인</h2>
+                <div class="w-12 h-1 bg-gradient-to-r from-vividPink to-blue-500 mx-auto mt-2 rounded-full"></div>
             </div>
 
-            <!-- Beautiful Vertical Visual Timeline Roadmap -->
-            <div class="relative max-w-4xl mx-auto">
-                <!-- Main Vertical Line -->
-                <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-1 bg-navy-700/60 rounded-full" style="background-color: var(--timeline-line);"></div>
+            <!-- Compact Road Map -->
+            <div class="relative max-w-3xl mx-auto text-xs sm:text-sm">
+                <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-[2px] bg-navy-700/60" style="background-color: var(--timeline-line);"></div>
 
-                <!-- Timeline Step 1: Broadening horizons -->
-                <!-- -->
-                <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-12 mb-12 sm:mb-16 md:even:flex-row-reverse group">
-                    <!-- Marker Node -->
-                    <div class="absolute left-4 md:left-1/2 transform -translate-x-[6px] md:-translate-x-1/2 w-4 h-4 rounded-full bg-vividPink border-4 border-navy-950 group-hover:scale-125 transition-transform duration-300 z-10 shadow-neon"></div>
-                    
-                    <!-- Text Box (Left/Right depending on odd/even) -->
-                    <div class="w-full md:w-[calc(50%-2rem)] ml-8 md:ml-0 bg-navy-900 border border-navy-700 p-6 rounded-3xl pink-glow-hover transition-all duration-300">
-                        <span class="text-[10px] font-black tracking-widest text-vividPink font-montserrat">STAGE 01</span>
-                        <h4 class="text-base sm:text-lg font-bold text-themeTitle mt-1.5 flex items-center justify-between">
-                            시야의 확장 (복수전공 & 교직이수)
-                            <span class="text-xs font-medium font-montserrat text-themeMuted">Dongguk Univ.</span>
-                        </h4>
-                        <p class="text-xs sm:text-sm text-themeMuted mt-3 leading-relaxed font-light">
-                            중어중문학으로 어학적 감각을 벼리고, 국제통상학을 복수전공하여 글로벌 유통과 시장의 흐름을 통찰하기 시작했습니다. 또한 교직을 체계적으로 수료하며 효과적인 지식 전달 방법론까지 훈련했습니다.
-                        </p>
+                <!-- Stage 1 -->
+                <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8 md:even:flex-row-reverse group">
+                    <div class="absolute left-4 md:left-1/2 transform -translate-x-[5px] md:-translate-x-1/2 w-3 h-3 rounded-full bg-vividPink border-2 border-navy-950 z-10"></div>
+                    <div class="w-full md:w-[calc(50%-1.5rem)] ml-8 md:ml-0 bg-navy-900 border border-navy-700 p-4 rounded-xl">
+                        <span class="text-[9px] font-black text-vividPink">STAGE 01. 학업 및 전달력</span>
+                        <h4 class="font-bold text-themeTitle mt-1">학사 졸업 & 교직이수</h4>
+                        <p class="text-xs text-themeMuted mt-1 font-light">중문·국제통상 복수전공으로 넓은 시야 확보 및 구조화 소통력 확보.</p>
                     </div>
-                    <!-- Empty spacing for layout on desktop -->
-                    <div class="hidden md:block w-[calc(50%-2rem)]"></div>
+                    <div class="hidden md:block w-[calc(50%-1.5rem)]"></div>
                 </div>
 
-                <!-- Timeline Step 2: Global Action -->
-                <!-- -->
-                <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-12 mb-12 sm:mb-16 md:flex-row-reverse group">
-                    <!-- Marker Node -->
-                    <div class="absolute left-4 md:left-1/2 transform -translate-x-[6px] md:-translate-x-1/2 w-4 h-4 rounded-full bg-blue-500 border-4 border-navy-950 group-hover:scale-125 transition-transform duration-300 z-10 shadow-blue-glow"></div>
-                    
-                    <div class="w-full md:w-[calc(50%-2rem)] ml-8 md:ml-0 bg-navy-900 border border-navy-700 p-6 rounded-3xl pink-glow-hover transition-all duration-300">
-                        <span class="text-[10px] font-black tracking-widest text-blue-400 font-montserrat">STAGE 02</span>
-                        <h4 class="text-base sm:text-lg font-bold text-themeTitle mt-1.5 flex items-center justify-between">
-                            글로벌 실전 (칭화대 & 통역 3회)
-                            <span class="text-xs font-medium font-montserrat text-themeMuted">Beijing, China</span>
-                        </h4>
-                        <p class="text-xs sm:text-sm text-themeMuted mt-3 leading-relaxed font-light">
-                            중국 베이징 최고의 명문 칭화대학교 교환학생 학업을 성료하고, 무역 바이어 매칭 및 스타트업 피칭 포럼 등 3회에 이르는 최전방 비즈니스 실전 통역을 이뤄내며 단순 학업을 뛰어넘는 비즈니스 경쟁력을 확보했습니다.
-                        </p>
+                <!-- Stage 2 -->
+                <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8 md:flex-row-reverse group">
+                    <div class="absolute left-4 md:left-1/2 transform -translate-x-[5px] md:-translate-x-1/2 w-3 h-3 rounded-full bg-blue-400 border-2 border-navy-950 z-10"></div>
+                    <div class="w-full md:w-[calc(50%-1.5rem)] ml-8 md:ml-0 bg-navy-900 border border-navy-700 p-4 rounded-xl">
+                        <span class="text-[9px] font-black text-blue-400">STAGE 02. 글로벌 실전</span>
+                        <h4 class="font-bold text-themeTitle mt-1">칭화대 & 비즈니스 통역 3회</h4>
+                        <p class="text-xs text-themeMuted mt-1 font-light">계약 조항 분석 및 최고 난이도의 한중 기술 비즈니스 실전 통역 정복.</p>
                     </div>
-                    <div class="hidden md:block w-[calc(50%-2rem)]"></div>
+                    <div class="hidden md:block w-[calc(50%-1.5rem)]"></div>
                 </div>
 
-                <!-- Timeline Step 3: Technology Convergence -->
-                <!-- -->
-                <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-12 group">
-                    <!-- Marker Node -->
-                    <div class="absolute left-4 md:left-1/2 transform -translate-x-[6px] md:-translate-x-1/2 w-4 h-4 rounded-full bg-emerald-400 border-4 border-navy-950 group-hover:scale-125 transition-transform duration-300 z-10"></div>
-                    
-                    <div class="w-full md:w-[calc(50%-2rem)] ml-8 md:ml-0 bg-navy-900 border border-navy-700 p-6 rounded-3xl pink-glow-hover transition-all duration-300">
-                        <span class="text-[10px] font-black tracking-widest text-emerald-400 font-montserrat">STAGE 03</span>
-                        <h4 class="text-base sm:text-lg font-bold text-themeTitle mt-1.5 flex items-center justify-between">
-                            기술의 융합 (SSAFY 16기)
-                            <span class="text-xs font-medium font-montserrat text-themeMuted">Present</span>
-                        </h4>
-                        <p class="text-xs sm:text-sm text-themeMuted mt-3 leading-relaxed font-light">
-                            현재 삼성 청년 SW 아카데미(SSAFY)에 소속되어 강력한 AI 알고리즘 분석과 현대적인 소프트웨어 아키텍처 이론 및 실습 프로젝트 과정을 이수하고 있습니다. 인문학적 스펙트럼과 하이 테크놀로지를 잇는 가교 역할을 완성해 가고 있습니다.
-                        </p>
+                <!-- Stage 3 -->
+                <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-4 group">
+                    <div class="absolute left-4 md:left-1/2 transform -translate-x-[5px] md:-translate-x-1/2 w-3 h-3 rounded-full bg-emerald-400 border-2 border-navy-950 z-10"></div>
+                    <div class="w-full md:w-[calc(50%-1.5rem)] ml-8 md:ml-0 bg-navy-900 border border-navy-700 p-4 rounded-xl">
+                        <span class="text-[9px] font-black text-emerald-400">STAGE 03. 현재의 융합</span>
+                        <h4 class="font-bold text-themeTitle mt-1">SSAFY 16기 AI·SW 최적화</h4>
+                        <p class="text-xs text-themeMuted mt-1 font-light">인공지능 알고리즘 분석 및 견고한 웹 프로덕트 구축 중.</p>
                     </div>
-                    <div class="hidden md:block w-[calc(50%-2rem)]"></div>
+                    <div class="hidden md:block w-[calc(50%-1.5rem)]"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- -->
     <!-- Section 5: Skills & Projects Section (Grid Portfolio) -->
-    <section id="projects" class="py-20 sm:py-28 bg-navy-900/10 relative border-t border-navy-700">
+    <section id="projects" class="py-12 bg-navy-900/10 relative border-t border-navy-700">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <!-- Section Header -->
-            <div class="text-center max-w-2xl mx-auto mb-16">
+            <div class="text-center max-w-2xl mx-auto mb-8">
                 <span class="text-xs font-black uppercase tracking-widest text-vividPink font-montserrat">Portfolio Hub</span>
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-themeTitle mt-3">융합 인재 가람의 4대 포트폴리오 그리드</h2>
-                <div class="w-16 h-1 bg-gradient-to-r from-vividPink to-blue-500 mx-auto mt-4 rounded-full"></div>
+                <h2 class="text-xl sm:text-2xl font-extrabold text-themeTitle mt-2">융합 인재 가람의 4대 핵심 증명서</h2>
+                <div class="w-12 h-1 bg-gradient-to-r from-vividPink to-blue-500 mx-auto mt-2 rounded-full"></div>
             </div>
 
             <!-- Grid Layout of Projects / Competence Areas -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 
-                <!-- Card 1: Language & Trade -->
-                <div class="rounded-3xl overflow-hidden bg-navy-900 border border-navy-700 group hover:shadow-neon transition-all duration-300 flex flex-col justify-between pink-glow-hover">
-                    <div class="h-48 sm:h-56 relative bg-navy-950 flex items-center justify-center overflow-hidden border-b border-navy-700">
-                        <!-- Abstract Visual Graphic replacing mock image -->
-                        <div class="absolute inset-0 bg-gradient-to-tr from-vividPink/10 to-transparent"></div>
-                        <div class="text-center z-10 space-y-3 px-6">
-                            <span class="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-vividPink bg-vividPink/10 border border-vividPink/25 px-2.5 py-1 rounded-md font-montserrat">Practical 어학 데이터 & 글로벌</span>
-                            <div class="flex justify-center items-center gap-6 mt-2">
-                                <div class="text-center">
-                                    <span class="block text-2xl font-black font-montserrat text-themeTitle">HSK 6급</span>
-                                    <span class="text-[9px] text-themeMuted">최상위 레벨</span>
-                                </div>
-                                <div class="w-px h-8 bg-navy-700"></div>
-                                <div class="text-center">
-                                    <span class="block text-2xl font-black font-montserrat text-themeTitle">TSK</span>
-                                    <span class="text-[9px] text-themeMuted">비즈니스 급수</span>
-                                </div>
-                            </div>
+                <!-- Card 1: Language & Trade (GLOBAL 상세) -->
+                <div id="project-global" class="rounded-2xl overflow-hidden bg-navy-900 border border-navy-700 group flex flex-col justify-between pink-glow-hover scroll-mt-24">
+                    <div class="p-5 bg-navy-950 border-b border-navy-700 flex justify-between items-center">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-vividPink bg-vividPink/10 px-2.5 py-1 rounded">Language & Trade</span>
+                        <div class="flex items-center gap-3 text-xs font-bold text-themeTitle font-montserrat">
+                            <span>HSK 6급</span>
+                            <span class="text-navy-700">|</span>
+                            <span>TSK 비즈니스</span>
                         </div>
-                        <!-- FontAwesome Background Pattern -->
-                        <i class="fa-solid fa-language absolute right-6 bottom-4 text-7xl text-navy-800/40 pointer-events-none"></i>
                     </div>
-                    <div class="p-6 sm:p-8 space-y-3 flex-1 flex flex-col justify-between">
-                        <div class="space-y-2">
-                            <h3 class="font-extrabold text-themeTitle text-base sm:text-lg">Language & Trade (글로벌 실무)</h3>
-                            <p class="text-xs sm:text-sm text-themeMuted leading-relaxed font-light">
-                                베이징 칭화대 교환학생 시절 다듬은 최상급 어학 실무 능력과 동국대 국제통상 수료에서 얻은 무역 계약 조항 분석 및 리스크 탐색 지표를 융합했습니다. 바이어 발굴 및 글로벌 소통의 선두를 이끌 준비가 되었습니다.
-                            </p>
-                        </div>
-                        <div class="pt-4 border-t border-navy-800/60 mt-4 flex flex-wrap gap-1.5">
-                            <span class="px-2 py-1 bg-navy-800 text-[10px] text-themeMuted rounded">칭화대학교</span>
-                            <span class="px-2 py-1 bg-navy-800 text-[10px] text-themeMuted rounded">통역 3회</span>
-                            <span class="px-2 py-1 bg-navy-800 text-[10px] text-themeMuted rounded">국제통상전공</span>
+                    <div class="p-5 space-y-2 flex-1">
+                        <h3 class="font-extrabold text-themeTitle text-base">글로벌 커뮤니케이션 & 무역 실무</h3>
+                        <p class="text-xs text-themeMuted leading-relaxed font-light">
+                            단순 성적을 넘어 바이어 상담, 계약 분석, 비즈니스 기술 통역을 3차례 전담하며 글로벌 현장 소통을 성공시켰습니다.
+                        </p>
+                        <div class="flex flex-wrap gap-1 mt-2">
+                            <span class="px-2 py-0.5 bg-navy-800 text-[9px] text-themeMuted rounded">칭화대학교</span>
+                            <span class="px-2 py-0.5 bg-navy-800 text-[9px] text-themeMuted rounded">무역 조항 리스크 통제</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Card 2: AI & Software Projects -->
-                <!-- -->
-                <div class="rounded-3xl overflow-hidden bg-navy-900 border border-navy-700 group hover:shadow-neon transition-all duration-300 flex flex-col justify-between pink-glow-hover">
-                    <div class="h-48 sm:h-56 relative bg-navy-950 flex items-center justify-center overflow-hidden border-b border-navy-700">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-blue-500/10 to-transparent"></div>
-                        <div class="text-center z-10 space-y-3 px-6">
-                            <span class="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-blue-400 bg-blue-500/10 border border-blue-500/25 px-2.5 py-1 rounded-md font-montserrat">SSAFY 16기 개발 데스크</span>
-                            <div class="flex justify-center items-center gap-4 text-xs font-mono text-emerald-400 mt-2">
-                                <i class="fa-solid fa-terminal"></i>
-                                <span>python --version # 3.10+</span>
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-code-branch absolute right-6 bottom-4 text-7xl text-navy-800/40 pointer-events-none"></i>
+                <!-- Card 2: AI & Software (TECH 상세) -->
+                <div id="project-tech" class="rounded-2xl overflow-hidden bg-navy-900 border border-navy-700 group flex flex-col justify-between pink-glow-hover scroll-mt-24">
+                    <div class="p-5 bg-navy-950 border-b border-navy-700 flex justify-between items-center">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-blue-400 bg-blue-500/10 px-2.5 py-1 rounded">AI & Software</span>
+                        <span class="text-[10px] font-mono text-emerald-400"><i class="fa-solid fa-terminal mr-1"></i>python 3.10+</span>
                     </div>
-                    <div class="p-6 sm:p-8 space-y-3 flex-1 flex flex-col justify-between">
-                        <div class="space-y-2">
-                            <h3 class="font-extrabold text-themeTitle text-base sm:text-lg">AI & Software Projects (기술적 기반)</h3>
-                            <p class="text-xs sm:text-sm text-themeMuted leading-relaxed font-light">
-                                SSAFY에서 이수 중인 체계적인 AI 트랙 지식을 기반으로, 대규모 텍스트 전처리(NLP), 머신러닝 모형 정립, 그리고 이를 지휘하는 백엔드 API 설계 프로세스 및 깃허브(GitHub) 협업 문화를 밀도 높게 학습 및 구축하고 있습니다.
-                            </p>
-                        </div>
-                        <div class="pt-4 border-t border-navy-800/60 mt-4 flex flex-wrap gap-1.5">
-                            <span class="px-2 py-1 bg-navy-800 text-[10px] text-themeMuted rounded font-montserrat">Python NLP</span>
-                            <span class="px-2 py-1 bg-navy-800 text-[10px] text-themeMuted rounded font-montserrat">MySQL</span>
-                            <span class="px-2 py-1 bg-navy-800 text-[10px] text-themeMuted rounded font-montserrat">GitHub Workflow</span>
+                    <div class="p-5 space-y-2 flex-1">
+                        <h3 class="font-extrabold text-themeTitle text-base">인공지능 솔루션 개발</h3>
+                        <p class="text-xs text-themeMuted leading-relaxed font-light">
+                            SSAFY AI 트랙의 체계적 커리큘럼 기반 NLP 전처리, 머신러닝 모형 정립, 그리고 이를 제어하는 API 아키텍처를 유연하게 구축합니다.
+                        </p>
+                        <div class="flex flex-wrap gap-1 mt-2">
+                            <span class="px-2 py-0.5 bg-navy-800 text-[9px] text-themeMuted rounded font-montserrat">MySQL</span>
+                            <span class="px-2 py-0.5 bg-navy-800 text-[9px] text-themeMuted rounded font-montserrat">Git Workflow</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Card 3: Collaboration & Leadership -->
-                <!-- -->
-                <div class="rounded-3xl overflow-hidden bg-navy-900 border border-navy-700 group hover:shadow-neon transition-all duration-300 flex flex-col justify-between pink-glow-hover">
-                    <div class="h-48 sm:h-56 relative bg-navy-950 flex items-center justify-center overflow-hidden border-b border-navy-700">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-emerald-500/10 to-transparent"></div>
-                        <div class="text-center z-10 space-y-3 px-6">
-                            <span class="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 px-2.5 py-1 rounded-md font-montserrat">University Active Space</span>
-                            <p class="text-xs text-themeMuted leading-relaxed font-light">중앙동아리 부회장으로서의 탁월한 갈등 극복 성과 기록</p>
-                        </div>
-                        <i class="fa-solid fa-users-viewfinder absolute right-6 bottom-4 text-7xl text-navy-800/40 pointer-events-none"></i>
+                <!-- Card 3: Collaboration (ENERGY 상세) -->
+                <div id="project-energy" class="rounded-2xl overflow-hidden bg-navy-900 border border-navy-700 group flex flex-col justify-between pink-glow-hover scroll-mt-24">
+                    <div class="p-5 bg-navy-950 border-b border-navy-700 flex justify-between items-center">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded">Collaboration</span>
+                        <span class="text-[10px] font-bold text-themeTitle">ENFJ형 리더십</span>
                     </div>
-                    <div class="p-6 sm:p-8 space-y-3 flex-1 flex flex-col justify-between">
-                        <div class="space-y-2">
-                            <h3 class="font-extrabold text-themeTitle text-base sm:text-lg">Collaboration & Leadership (팀워크 조율)</h3>
-                            <p class="text-xs sm:text-sm text-themeMuted leading-relaxed font-light">
-                                교내 대규모 중앙동아리 부회장 직책에 선출되어 100명 이상의 다채로운 의견을 가진 멤버들의 이해관계를 적극 조율하고, 다양한 협력 대내외 행사를 총괄 기획하여 탄탄한 예산 처리와 구성원의 융합을 안정감 있게 주도했습니다.
-                            </p>
-                        </div>
-                        <div class="pt-4 border-t border-navy-800/60 mt-4 flex flex-wrap gap-1.5">
-                            <span class="px-2 py-1 bg-navy-800 text-[10px] text-themeMuted rounded">중앙동아리 회장단</span>
-                            <span class="px-2 py-1 bg-navy-800 text-[10px] text-themeMuted rounded">갈등 극복 설계</span>
-                            <span class="px-2 py-1 bg-navy-800 text-[10px] text-themeMuted rounded font-montserrat">ENFJ 리더십</span>
+                    <div class="p-5 space-y-2 flex-1">
+                        <h3 class="font-extrabold text-themeTitle text-base">중앙동아리 부회장 리더십</h3>
+                        <p class="text-xs text-themeMuted leading-relaxed font-light">
+                            100명 규모 조직의 갈등을 원만히 해결하고 예산 흐름과 대형 행사를 조율하며 팀 워크의 윤활유 역할을 완수했습니다.
+                        </p>
+                        <div class="flex flex-wrap gap-1 mt-2">
+                            <span class="px-2 py-0.5 bg-navy-800 text-[9px] text-themeMuted rounded">갈등 해결 메커니즘</span>
+                            <span class="px-2 py-0.5 bg-navy-800 text-[9px] text-themeMuted rounded">리더십 지표</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Card 4: Lifestyle Curation -->
-                <!-- -->
-                <div class="rounded-3xl overflow-hidden bg-navy-900 border border-navy-700 group hover:shadow-neon transition-all duration-300 flex flex-col justify-between pink-glow-hover">
-                    <div class="h-48 sm:h-56 relative bg-navy-950 flex items-center justify-center overflow-hidden border-b border-navy-700">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-purple-500/10 to-transparent"></div>
-                        <div class="text-center z-10 space-y-3 px-6">
-                            <span class="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-purple-400 bg-purple-500/10 border border-purple-500/25 px-2.5 py-1 rounded-md font-montserrat">Daily Trend Eye</span>
-                            <p class="text-xs text-themeMuted leading-relaxed font-light">뮤지컬의 서사, 캔버스의 구도, 트렌디한 공간의 문장</p>
-                        </div>
-                        <i class="fa-solid fa-palette absolute right-6 bottom-4 text-7xl text-navy-800/40 pointer-events-none"></i>
+                <div id="project-lifestyle" class="rounded-2xl overflow-hidden bg-navy-900 border border-navy-700 group flex flex-col justify-between pink-glow-hover scroll-mt-24">
+                    <div class="p-5 bg-navy-950 border-b border-navy-700 flex justify-between items-center">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-purple-400 bg-purple-500/10 px-2.5 py-1 rounded">Lifestyle Curation</span>
+                        <span class="text-[10px] text-themeMuted"><i class="fa-solid fa-palette mr-1"></i>트렌드 안목</span>
                     </div>
-                    <div class="p-6 sm:p-8 space-y-3 flex-1 flex flex-col justify-between">
-                        <div class="space-y-2">
-                            <h3 class="font-extrabold text-themeTitle text-base sm:text-lg">Lifestyle Curation (트렌드 큐레이션)</h3>
-                            <p class="text-xs sm:text-sm text-themeMuted leading-relaxed font-light">
-                                스포츠(수영, 러닝, 산행)를 통한 한계 극복 정신에 더해 문화 예술(뮤지컬, 회화, 카페 탐방)의 레이아웃과 서사를 분석하는 센스를 갖췄습니다. 대중의 감성에 귀를 기울이며 신선한 가치를 도출하는 훌륭한 인사이트 기획력을 갖추고 있습니다.
-                            </p>
-                        </div>
-                        <div class="pt-4 border-t border-navy-800/60 mt-4 flex flex-wrap gap-1.5">
-                            <span class="px-2 py-1 bg-navy-800 text-[10px] text-themeMuted rounded">문화예술 큐레이터</span>
-                            <span class="px-2 py-1 bg-navy-800 text-[10px] text-themeMuted rounded">공간 브랜딩 연구</span>
-                            <span class="px-2 py-1 bg-navy-800 text-[10px] text-themeMuted rounded">체력적 끈기</span>
+                    <div class="p-5 space-y-2 flex-1">
+                        <h3 class="font-extrabold text-themeTitle text-base">체력 및 트렌드 인사이트</h3>
+                        <p class="text-xs text-themeMuted leading-relaxed font-light">
+                            매일 아침 10km 러닝 및 수영으로 단련된 튼튼한 복원력과 뮤지컬, 회화, 브랜드 큐레이션 등의 예술적 감각이 융합되었습니다.
+                        </p>
+                        <div class="flex flex-wrap gap-1 mt-2">
+                            <span class="px-2 py-0.5 bg-navy-800 text-[9px] text-themeMuted rounded">강인한 실행력</span>
+                            <span class="px-2 py-0.5 bg-navy-800 text-[9px] text-themeMuted rounded">트렌드 스캐닝</span>
                         </div>
                     </div>
                 </div>
@@ -699,153 +524,148 @@
         </div>
     </section>
 
-    <!-- -->
     <!-- Section 6: CTA Section -->
-    <section class="py-20 sm:py-24 bg-gradient-to-r from-navy-900 to-navy-950 border-t border-navy-700 relative overflow-hidden">
+    <section class="py-12 bg-gradient-to-r from-navy-900 to-navy-950 border-t border-navy-700 relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-r from-vividPink/5 to-transparent pointer-events-none"></div>
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10 space-y-6 sm:space-y-8">
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-themeTitle tracking-tight leading-tight">
-                준비된 융합형 인재,<br class="sm:hidden"> 한가람과 함께 달릴 기업을 찾습니다.
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10 space-y-4">
+            <h2 class="text-xl sm:text-2xl font-extrabold text-themeTitle tracking-tight">
+                준비된 융합형 인재, 한가람과 함께 달릴 기업을 찾습니다.
             </h2>
-            <p class="text-sm sm:text-base text-themeMuted max-w-xl mx-auto font-light leading-relaxed">
-                글로벌 지평, 고도화된 SW 교육 집중, 단단한 커뮤니티 리더십까지 완벽히 탑재한 올라운더 인재의 성장 여정에 지금 합류해보세요.
+            <p class="text-xs text-themeMuted max-w-lg mx-auto font-light">
+                글로벌 지평, 고도화된 SW 교육, 단단한 리더십을 갖춘 한가람을 팀원으로 확보해 보세요.
             </p>
-            <div class="pt-4">
-                <a href="#contact" class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-vividPink hover:bg-vividPink-hover text-white font-extrabold text-sm tracking-wide transition-all transform hover:scale-105 shadow-neon hover:shadow-neon-strong">
+            <div class="pt-2">
+                <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-vividPink hover:bg-vividPink-hover text-white font-extrabold text-xs tracking-wide transition-all transform hover:scale-105 shadow-neon">
                     채용 제안 및 연락처 보기 <i class="fa-solid fa-arrow-right"></i>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- -->
-    <!-- Section 7: Footer & Contact Section -->
-    <footer id="contact" class="bg-navy-950 border-t border-navy-700 py-16 sm:py-24 relative overflow-hidden">
-        <!-- Floating Deco Sphere -->
+    <!-- Section 7: Footer & Contact Section (Styled exactly like image_ef815c.png) -->
+    <footer id="contact" class="bg-navy-950 border-t border-navy-700 py-12 sm:py-20 relative overflow-hidden">
         <div class="absolute bottom-0 right-0 w-80 h-80 bg-vividPink/5 rounded-full blur-[100px] pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
                 
-                <!-- Col 1: Contact Direct Information (Col-5) -->
-                <div class="lg:col-span-5 space-y-8">
+                <!-- Col 1: Contact Direct Information (Matches left side of image_ef815c.png) -->
+                <div class="lg:col-span-5 space-y-6">
                     <div>
-                        <span class="text-xs font-black uppercase tracking-widest text-vividPink font-montserrat">Get In Touch</span>
-                        <h2 class="text-2xl sm:text-3xl font-extrabold text-themeTitle mt-3">확신이 서는 비즈니스 커넥션을 시작하세요</h2>
-                        <div class="w-12 h-1 bg-vividPink mt-4 rounded-full"></div>
+                        <span class="text-xs font-black uppercase tracking-widest text-vividPink font-montserrat">CONTACT & PITCH</span>
+                        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-themeTitle mt-3 leading-tight">
+                            가장 단단하고 믿음직한 파<br class="hidden lg:inline">트너와 연결되세요
+                        </h2>
+                        <div class="w-10 h-0.5 bg-vividPink mt-4"></div>
                     </div>
                     
-                    <p class="text-sm text-themeMuted leading-relaxed font-light">
-                        글로벌 최고 수준의 의사소통 역량과 IT 핵심 기술 역량을 모두 보유한 한가람에게 프로젝트 제휴 및 채용 의사를 건네주세요. 최선을 다해 회신 드리겠습니다.
+                    <p class="text-xs text-themeMuted leading-relaxed font-light">
+                        글로벌 통역 역량과 탄탄한 AI/SW 개발 역량을 장착한 융합형 인재를 원하신다면, 지금 바로 연락해 주세요. 인사담당자분들의 소중한 한 걸음에 멈추지 않는 도전으로 응답하겠습니다.
                     </p>
 
-                    <!-- Core Contact Options List -->
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-4">
-                            <div class="w-11 h-11 rounded-2xl bg-navy-800 flex items-center justify-center text-vividPink border border-navy-700">
-                                <i class="fa-solid fa-envelope text-sm"></i>
+                    <!-- Contact Details List -->
+                    <div class="space-y-3.5">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-navy-800 flex items-center justify-center text-vividPink border border-navy-700">
+                                <i class="fa-solid fa-envelope text-xs"></i>
                             </div>
-                            <div class="min-w-0">
-                                <p class="text-[9px] text-themeMuted uppercase font-extrabold tracking-widest">EMAIL ADDRESS</p>
-                                <a href="mailto:hangaram@example.com" class="text-sm font-bold text-themeTitle hover:underline truncate block">hangaram@example.com</a>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center gap-4">
-                            <div class="w-11 h-11 rounded-2xl bg-navy-800 flex items-center justify-center text-blue-400 border border-navy-700">
-                                <i class="fa-brands fa-linkedin text-sm"></i>
-                            </div>
-                            <div class="min-w-0">
-                                <p class="text-[9px] text-themeMuted uppercase font-extrabold tracking-widest">LINKEDIN</p>
-                                <a href="https://linkedin.com/in/hangaram" target="_blank" class="text-sm font-bold text-themeTitle hover:underline truncate block">linkedin.com/in/hangaram</a>
+                            <div>
+                                <p class="text-[8px] text-themeMuted uppercase font-extrabold tracking-widest leading-none">이메일 연락처</p>
+                                <a href="mailto:hangaram@example.com" class="text-xs font-bold text-themeTitle hover:underline">hangaram@example.com</a>
                             </div>
                         </div>
 
-                        <div class="flex items-center gap-4">
-                            <div class="w-11 h-11 rounded-2xl bg-navy-800 flex items-center justify-center text-emerald-400 border border-navy-700">
-                                <i class="fa-brands fa-github text-sm"></i>
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-navy-800 flex items-center justify-center text-blue-400 border border-navy-700">
+                                <i class="fa-brands fa-linkedin text-xs"></i>
                             </div>
-                            <div class="min-w-0">
-                                <p class="text-[9px] text-themeMuted uppercase font-extrabold tracking-widest">GITHUB REPOSITORY</p>
-                                <a href="https://github.com/hangaram" target="_blank" class="text-sm font-bold text-themeTitle hover:underline truncate block">github.com/hangaram</a>
+                            <div>
+                                <p class="text-[8px] text-themeMuted uppercase font-extrabold tracking-widest leading-none">링크드인 연결</p>
+                                <a href="https://linkedin.com/in/hangaram" target="_blank" class="text-xs font-bold text-themeTitle hover:underline">linkedin.com/in/hangaram</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-navy-800 flex items-center justify-center text-emerald-400 border border-navy-700">
+                                <i class="fa-brands fa-github text-xs"></i>
+                            </div>
+                            <div>
+                                <p class="text-[8px] text-themeMuted uppercase font-extrabold tracking-widest leading-none">GITHUB 레포지토리</p>
+                                <a href="https://github.com/hangaram" target="_blank" class="text-xs font-bold text-themeTitle hover:underline">github.com/hangaram</a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- PDF Mock Resume download handler -->
-                    <!-- -->
-                    <div class="pt-4">
-                        <button onclick="downloadInteractiveResume()" class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-navy-800 hover:bg-navy-700 text-themeTitle border border-navy-700 hover:border-vividPink text-xs font-bold transition-all focus:outline-none">
-                            <i class="fa-solid fa-file-pdf text-vividPink text-sm"></i> <span>한가람 이력서 PDF 다운로드</span>
+                    <!-- PDF Mock Resume Download (Exact replica button of image_ef815c.png bottom-left) -->
+                    <div class="pt-2">
+                        <button onclick="downloadInteractiveResume()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-transparent hover:bg-navy-800 text-themeTitle border border-navy-700 hover:border-vividPink text-xs font-bold transition-all focus:outline-none">
+                            <i class="fa-solid fa-file-pdf text-vividPink"></i> <span>한가람 국문 이력서 다운로드</span>
                         </button>
                     </div>
                 </div>
 
-                <!-- Col 2: Action Suggestion Mail Box (Col-7) -->
-                <!-- -->
-                <div class="lg:col-span-7 bg-navy-900 border border-navy-700 p-6 sm:p-10 rounded-[2rem] relative">
-                    <!-- Form submission feedback toast banner -->
-                    <div id="form-success-toast" class="hidden mb-6 p-4 bg-emerald-500/10 border border-emerald-500/30 text-emerald-500 text-xs rounded-2xl text-center flex items-center justify-center gap-2">
+                <!-- Col 2: Action Suggestion Mail Box (Matches right card of image_ef815c.png) -->
+                <div class="lg:col-span-7 bg-navy-900 border border-navy-700 p-6 sm:p-8 rounded-2xl relative shadow-2xl">
+                    <div id="form-success-toast" class="hidden mb-4 p-3 bg-emerald-500/10 border border-emerald-500/30 text-emerald-500 text-xs rounded-xl text-center flex items-center justify-center gap-2">
                         <i class="fa-solid fa-circle-check"></i>
-                        <span>채용 제안이 정상적으로 전송되었습니다! 면밀히 살핀 후 바로 연락드리겠습니다.</span>
+                        <span>채용 제안이 정상적으로 전송되었습니다!</span>
                     </div>
 
-                    <form id="contact-proposal-form" onsubmit="submitFormFake(event)" class="space-y-5">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <form id="contact-proposal-form" onsubmit="submitFormFake(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <label for="form-name" class="text-xs font-bold text-themeTitle block mb-2">담당자 이름 *</label>
-                                <input type="text" id="form-name" required placeholder="인사팀 이철수 매니저" class="w-full bg-navy-950 border border-navy-700 p-3.5 rounded-xl text-xs text-themeTitle focus:outline-none focus:border-vividPink font-medium">
+                                <label for="form-name" class="text-xs font-bold text-themeTitle block mb-1.5">성함 / 담당자 직함 *</label>
+                                <input type="text" id="form-name" required placeholder="예: 인사담당자 홍길동" class="w-full bg-navy-950 border border-navy-700 p-2.5 rounded-lg text-xs text-themeTitle focus:outline-none focus:border-vividPink font-medium">
                             </div>
                             <div>
-                                <label for="form-company" class="text-xs font-bold text-themeTitle block mb-2">기업/소속 단체명 *</label>
-                                <input type="text" id="form-company" required placeholder="주식회사 한가람" class="w-full bg-navy-950 border border-navy-700 p-3.5 rounded-xl text-xs text-themeTitle focus:outline-none focus:border-vividPink font-medium">
+                                <label for="form-company" class="text-xs font-bold text-themeTitle block mb-1.5">기업명 / 소속 *</label>
+                                <input type="text" id="form-company" required placeholder="예: 한가람 코퍼레이션" class="w-full bg-navy-950 border border-navy-700 p-2.5 rounded-lg text-xs text-themeTitle focus:outline-none focus:border-vividPink font-medium">
                             </div>
                         </div>
 
                         <div>
-                            <label for="form-email" class="text-xs font-bold text-themeTitle block mb-2">회신용 이메일 주소 *</label>
-                            <input type="email" id="form-email" required placeholder="contact@company.com" class="w-full bg-navy-950 border border-navy-700 p-3.5 rounded-xl text-xs text-themeTitle focus:outline-none focus:border-vividPink font-medium">
+                            <label for="form-email" class="text-xs font-bold text-themeTitle block mb-1.5">연락 가능한 이메일 주소 *</label>
+                            <input type="email" id="form-email" required placeholder="예: HR@company.com" class="w-full bg-navy-950 border border-navy-700 p-2.5 rounded-lg text-xs text-themeTitle focus:outline-none focus:border-vividPink font-medium">
                         </div>
 
                         <div>
-                            <label for="form-content" class="text-xs font-bold text-themeTitle block mb-2">제안 상세 내역 *</label>
-                            <textarea id="form-content" rows="4" required placeholder="한가람 님께 제안하는 글로벌 사업, AI 및 웹 개발 프로젝트 등의 상세 협업 조건을 간략히 기록해 주세요." class="w-full bg-navy-950 border border-navy-700 p-3.5 rounded-xl text-xs text-themeTitle focus:outline-none focus:border-vividPink resize-none font-medium"></textarea>
+                            <label for="form-content" class="text-xs font-bold text-themeTitle block mb-1.5">제안 내용 및 메시지 *</label>
+                            <textarea id="form-content" rows="4" required placeholder="한가람 님께 제안하실 비즈니스 협업 내용이나 프로젝트 제안을 적어주세요." class="w-full bg-navy-950 border border-navy-700 p-2.5 rounded-lg text-xs text-themeTitle focus:outline-none focus:border-vividPink resize-none font-medium"></textarea>
                         </div>
 
                         <div class="flex items-start gap-2.5">
-                            <input type="checkbox" id="terms" required class="accent-vividPink w-4 h-4 mt-0.5 rounded cursor-pointer">
-                            <label for="terms" class="text-[10px] sm:text-xs text-themeMuted select-none cursor-pointer leading-relaxed">
-                                (필수) 제안 수신 및 협업 커뮤니케이션을 위한 개인정보 이용에 전적으로 동의합니다.
+                            <input type="checkbox" id="terms" required class="accent-vividPink w-3.5 h-3.5 mt-0.5 rounded cursor-pointer">
+                            <label for="terms" class="text-[10px] text-themeMuted select-none cursor-pointer leading-relaxed">
+                                개인정보 수집 및 협업 제안을 위해 연락처를 활용하는 데 동의합니다.
                             </label>
                         </div>
 
-                        <button type="submit" class="w-full py-4 rounded-xl bg-vividPink hover:bg-vividPink-hover text-white font-extrabold text-xs shadow-neon transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2 focus:outline-none">
+                        <button type="submit" class="w-full py-3 rounded-lg bg-vividPink hover:bg-vividPink-hover text-white font-extrabold text-xs shadow-neon transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2 focus:outline-none">
                             <i class="fa-solid fa-paper-plane"></i> <span>제안하기</span>
                         </button>
                     </form>
                 </div>
             </div>
 
-            <!-- Footer Deep Credit Space -->
-            <div class="mt-16 sm:mt-24 pt-8 border-t border-navy-800 text-center space-y-4">
-                <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-xs font-semibold text-themeTitle">
+            <!-- Footer Bottom Credit -->
+            <div class="mt-12 pt-6 border-t border-navy-800 text-center space-y-2">
+                <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-xs font-semibold text-themeTitle">
                     <a href="#intro" class="hover:text-vividPink transition-colors">HOME</a>
                     <a href="#about" class="hover:text-vividPink transition-colors">ABOUT</a>
                     <a href="#core-values" class="hover:text-vividPink transition-colors">VALUES</a>
                     <a href="#timeline" class="hover:text-vividPink transition-colors">ROAD</a>
                     <a href="#projects" class="hover:text-vividPink transition-colors">PORTFOLIO</a>
                 </div>
-                <p class="text-[10px] sm:text-xs text-themeMuted font-medium leading-relaxed">
-                    © 2026 Han Garam. All Rights Reserved. <br class="sm:hidden"> Built with Passion, Softwares and Convergence Mindset.
+                <p class="text-[10px] text-themeMuted font-medium leading-relaxed">
+                    © 2026 Han Garam. All Rights Reserved. Built with Passion & Convergence Mindset.
                 </p>
             </div>
         </div>
     </footer>
 
-    <!-- -->
-    <!-- Pure JavaScript Client Logics -->
+    <!-- Pure JavaScript Logics -->
     <script>
-        // Hamburger Drawer Open / Close Mechanism
+        // Hamburger Menu Drawer Open/Close Handler
         const menuTrigger = document.getElementById('mobile-hamburger-btn');
         const drawerMenu = document.getElementById('mobile-drawer');
 
@@ -853,7 +673,6 @@
             drawerMenu.classList.toggle('hidden');
         });
 
-        // Hide drawer upon clicking internal navigation links
         const mobileNavLinks = drawerMenu.querySelectorAll('a');
         mobileNavLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -861,25 +680,19 @@
             });
         });
 
-        // Dynamic Shrink of Header on scroll events
+        // Shrink Header height on scroll
         window.addEventListener('scroll', () => {
             const header = document.getElementById('main-header');
             if (window.scrollY > 40) {
-                header.classList.add('py-2', 'shadow-xl');
-                header.classList.remove('py-3', 'sm:py-4');
+                header.classList.add('py-1.5', 'shadow-xl');
+                header.classList.remove('py-3');
             } else {
-                header.classList.remove('py-2', 'shadow-xl');
+                header.classList.remove('py-1.5', 'shadow-xl');
                 header.classList.add('py-3');
             }
         });
 
-        // Toggle Chinese Greeting speech box
-        function toggleChineseGreeting() {
-            const box = document.getElementById('greeting-popup-box');
-            box.classList.toggle('hidden');
-        }
-
-        // Fake Suggestion Form Dispatch Handler
+        // Fake Suggestion Form Handler
         function submitFormFake(event) {
             event.preventDefault();
             const form = document.getElementById('contact-proposal-form');
@@ -890,18 +703,16 @@
 
             form.reset();
 
-            // Set auto-hide timer after 5 seconds
             setTimeout(() => {
                 toast.classList.add('hidden');
             }, 5000);
         }
 
-        // Live Theme Switcher Controller Logic
+        // Theme Switcher Logic
         const toggleBtn = document.getElementById('theme-switcher-btn');
         const toggleIcon = document.getElementById('theme-switcher-icon');
         const toggleText = document.getElementById('theme-switcher-text');
 
-        // Check local storage for persistent preference
         const persistedPref = localStorage.getItem('user-theme-pref');
         const osThemeDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
@@ -921,7 +732,6 @@
             }
         }
 
-        // Initialization theme setting
         if (persistedPref === 'light' || (!persistedPref && !osThemeDark)) {
             applyThemeState(true);
         } else {
@@ -935,11 +745,11 @@
             applyThemeState(targetLight);
         });
 
-        // Interactive Resume Text File Assembly and Download Client-side Link
+        // Dynamic Interactive Resume Build & Download
         function downloadInteractiveResume() {
             const resumeContent = `
 ==============================================================
-📋 한가람 퍼스널 포트폴리오 이력서 (Resume Summary)
+📋 한가람 퍼스널 포트폴리오 이력서 요약본 (Resume Summary)
 ==============================================================
 
 "멈추지 않는 호기심으로 세계를 넓히는 사람, 한가람입니다."
@@ -960,7 +770,7 @@
 
 3. ENERGY 역량:
    - 교내 대규모 중앙동아리 부회장 역임 (리더십 및 커뮤니티 조율)
-   - 러닝(매일 아침), 수영, 등산 등 뛰어난 피지컬 멘탈리티 소유
+   - 러닝, 수영, 등산 등 뛰어난 피지컬 멘탈리티 소유
 
 --------------------------------------------------------------
 * 협업 제안은 언제든 hangaram@example.com 으로 이메일 주시기 바랍니다.
