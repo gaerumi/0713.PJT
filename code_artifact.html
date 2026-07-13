@@ -118,6 +118,13 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #FF007F;
         }
+
+        /* Scroll Progress SVG */
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.1s linear;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
     </style>
 </head>
 <body class="selection:bg-vividPink selection:text-white">
@@ -145,6 +152,15 @@
                     <i class="fa-solid fa-moon text-xs mb-0.5" id="theme-switcher-icon"></i>
                     <span id="theme-switcher-text" class="text-[8px] font-black tracking-widest font-montserrat leading-none">DARK</span>
                 </button>
+
+                <!-- Interactive Scroll Progress Gauge (Compact Circle Indicator) -->
+                <div class="relative w-12 h-12 flex items-center justify-center bg-navy-800 border border-navy-700 rounded-xl" title="스크롤 진행률">
+                    <svg class="w-10 h-10">
+                        <circle class="text-navy-700/40" stroke-width="3" stroke="currentColor" fill="transparent" r="16" cx="20" cy="20" />
+                        <circle class="text-vividPink progress-ring__circle" stroke-width="3" stroke-dasharray="100.53" stroke-dashoffset="100.53" stroke-linecap="round" stroke="currentColor" fill="transparent" r="16" cx="20" cy="20" id="scroll-progress-ring" />
+                    </svg>
+                    <span id="scroll-progress-text" class="absolute font-montserrat text-[9px] font-extrabold text-themeTitle">0%</span>
+                </div>
 
                 <a href="#contact" class="hidden sm:inline-flex px-4 py-2 rounded-lg text-xs font-bold bg-vividPink hover:bg-vividPink-hover text-white transition-all shadow-neon">
                     협업 제안하기 <i class="fa-solid fa-paper-plane ml-1.5"></i>
@@ -680,17 +696,42 @@
             });
         });
 
-        // Shrink Header height on scroll
-        window.addEventListener('scroll', () => {
+        // Shrink Header height and update Scroll Progress Circular Gauge on scroll
+        const progressRing = document.getElementById('scroll-progress-ring');
+        const progressText = document.getElementById('scroll-progress-text');
+        
+        // Circular circumference is 2 * PI * r = 2 * Math.PI * 16 = ~100.53
+        const strokeCircumference = 2 * Math.PI * 16;
+
+        function updateScrollIndicator() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            
+            // Avoid division by zero
+            const scrollPercentage = docHeight > 0 ? Math.round((scrollTop / docHeight) * 100) : 0;
+            
+            // Update SVG circular bar
+            const offset = strokeCircumference - (scrollPercentage / 100) * strokeCircumference;
+            progressRing.style.strokeDashoffset = offset;
+            
+            // Update percentage number text
+            progressText.innerText = `${scrollPercentage}%`;
+
+            // Shrink header look
             const header = document.getElementById('main-header');
-            if (window.scrollY > 40) {
+            if (scrollTop > 40) {
                 header.classList.add('py-1.5', 'shadow-xl');
                 header.classList.remove('py-3');
             } else {
                 header.classList.remove('py-1.5', 'shadow-xl');
                 header.classList.add('py-3');
             }
-        });
+        }
+
+        window.addEventListener('scroll', updateScrollIndicator);
+        window.addEventListener('resize', updateScrollIndicator);
+        // Initialize once on load
+        updateScrollIndicator();
 
         // Fake Suggestion Form Handler
         function submitFormFake(event) {
