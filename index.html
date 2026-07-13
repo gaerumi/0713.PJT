@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>융합형 인재 한가람 | Personal Portfolio</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Pretendard & Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            950: 'var(--bg-base)',
+                            900: 'var(--bg-card)',
+                            800: 'var(--bg-card-inner)',
+                            700: 'var(--border-subtle)',
+                            600: 'var(--text-muted-more)',
+                        },
+                        themeText: 'var(--text-main)',
+                        themeMuted: 'var(--text-muted)',
+                        themeTitle: 'var(--text-title)',
+                        vividPink: {
+                            DEFAULT: '#FF007F',
+                            hover: '#E00070',
+                            light: '#FFF0F5',
+                            neon: 'rgba(255, 0, 127, 0.4)'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans KR', 'sans-serif'],
+                        montserrat: ['Montserrat', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'neon': '0 0 20px rgba(255, 0, 127, 0.25)',
+                        'neon-strong': '0 0 30px rgba(255, 0, 127, 0.65)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        :root {
+            --bg-base: #030712;
+            --bg-card: #0b1329;
+            --bg-card-inner: #1c2541;
+            --text-main: #d1d5db;
+            --text-muted: #9ca3af;
+            --text-muted-more: #4b5563;
+            --text-title: #ffffff;
+            --border-color: rgba(255, 0, 127, 0.2);
+            --border-subtle: rgba(28, 37, 65, 0.8);
+            --grid-color: rgba(243, 244, 246, 0.03);
+            --timeline-line: #1c2541;
+            --shadow-hover: 0 15px 35px -5px rgba(255, 0, 127, 0.25), 0 5px 15px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        body.light-mode {
+            --bg-base: #f9fafb;
+            --bg-card: #ffffff;
+            --bg-card-inner: #f3f4f6;
+            --text-main: #374151;
+            --text-muted: #6b7280;
+            --text-muted-more: #9ca3af;
+            --text-title: #111827;
+            --border-color: rgba(255, 0, 127, 0.15);
+            --border-subtle: rgba(229, 231, 235, 0.9);
+            --grid-color: rgba(17, 24, 39, 0.03);
+            --timeline-line: #e5e7eb;
+            --shadow-hover: 0 15px 35px -5px rgba(255, 0, 127, 0.15), 0 5px 15px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        *, *::before, *::after {
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        .text-gradient-pink {
+            background: linear-gradient(135deg, #FF007F 0%, #FF6B8B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* 6px Elevating Hover Animation for Premium Cards */
+        .pink-glow-hover {
+            border: 1px solid var(--border-color);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .pink-glow-hover:hover {
+            border-color: rgba(255, 0, 127, 0.7);
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-6px);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-base);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-card-inner);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF007F;
+        }
+
+        /* Scroll Progress SVG */
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.1s linear;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+
+        /* Comment Animation */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-comment-node {
+            animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Scroll Reveal Animation Classes */
+        .reveal-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-section.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Quiz Overlay Transitions */
+        .fade-out {
+            opacity: 0 !important;
+            pointer-events: none !important;
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+    </style>
+</head>
+<body class="selection:bg-vividPink selection:text-white overflow-hidden">
+
+    <!-- Interactive Quiz Landing Gate (Covering Layer) -->
+    <div id="quiz-landing-gate" class="fixed inset-0 z-[100] bg-navy-950 flex items-center justify-center p-4 overflow-y-auto">
+        <!-- Floating Ambient Background Nodes -->
+        <div class="absolute top-1/4 left-1/4 w-80 h-80 bg-vividPink/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+        
+        <!-- Live Theme Switcher for the Quiz Screen (Absolute Top-Right) -->
+        <div class="absolute top-6 right-6 z-[110]">
+            <button id="quiz-theme-switcher-btn" class="w-12 h-12 rounded-xl bg-navy-800 hover:bg-vividPink/10 text-themeTitle hover:text-vividPink transition-all flex flex-col items-center justify-center border border-navy-700 cursor-pointer focus:outline-none" aria-label="테마 스타일 변경">
+                <i class="fa-solid fa-moon text-xs mb-0.5 theme-switcher-icon"></i>
+                <span class="text-[8px] font-black tracking-widest font-montserrat leading-none theme-switcher-text">DARK</span>
+            </button>
+        </div>
+
+        <!-- Main Quiz Card -->
+        <div class="relative w-full max-w-xl bg-navy-900 border border-navy-700 rounded-3xl p-6 sm:p-10 shadow-2xl z-10 text-center space-y-6">
+            <!-- Progress / Status bar -->
+            <div id="quiz-progress-wrapper" class="flex items-center justify-between text-xs font-montserrat font-semibold text-themeMuted">
+                <span class="text-vividPink uppercase tracking-widest">Interactive Fit Finder</span>
+                <span id="quiz-step-indicator">Question 1 of 3</span>
+            </div>
+            
+            <div id="quiz-progress-bar" class="w-full bg-navy-800 h-1.5 rounded-full overflow-hidden border border-navy-700/50">
+                <div id="quiz-progress-fill" class="bg-vividPink h-full w-1/3 transition-all duration-300"></div>
+            </div>
+
+            <!-- Quiz Questions Area -->
+            <div id="quiz-content" class="space-y-6">
+                <!-- Introductory state -->
+                <div id="quiz-intro-section" class="space-y-4 py-4">
+                    <div class="inline-flex p-3 bg-vividPink/10 rounded-full border border-vividPink/25 text-3xl animate-bounce">
+                        🕵️
+                    </div>
+                    <h1 class="text-xl sm:text-2xl font-extrabold text-themeTitle tracking-tight">
+                        당신이 함께 일하고 싶은 팀원을 찾아보세요.
+                    </h1>
+                    <p class="text-xs sm:text-sm text-themeMuted font-light leading-relaxed">
+                        🧩 "3개의 질문으로 당신과 가장 완벽하게 합을 이룰 팀원을 매칭해드립니다."
+                    </p>
+                    <div class="pt-4">
+                        <button onclick="startQuiz()" class="px-8 py-3 rounded-xl bg-vividPink hover:bg-vividPink-hover text-white font-extrabold text-sm tracking-wide shadow-neon hover:scale-105 transition-all">
+                            매칭 시작하기 <i class="fa-solid fa-play ml-1.5 text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Active Question Display Area (Initially Hidden) -->
+                <div id="quiz-questions-section" class="hidden space-y-6 text-left">
+                    <h2 id="quiz-question-title" class="text-sm sm:text-base font-extrabold text-themeTitle leading-relaxed">
+                        <!-- Filled by JS -->
+                    </h2>
+
+                    <!-- Options Grid (Improved non-selected visibility) -->
+                    <div id="quiz-options-container" class="space-y-3">
+                        <!-- Options generated by JS dynamically -->
+                    </div>
+
+                    <!-- Navigation Buttons (With BACK support) -->
+                    <div class="flex items-center justify-between pt-4">
+                        <button id="quiz-back-btn" onclick="goPrevQuestion()" class="px-5 py-2.5 rounded-xl border border-navy-700 hover:border-vividPink bg-navy-800 hover:bg-vividPink/5 text-themeTitle font-bold text-xs tracking-wider transition-all flex items-center gap-1.5 focus:outline-none">
+                            <i class="fa-solid fa-chevron-left text-[10px]"></i> <span>BACK</span>
+                        </button>
+                        
+                        <button id="quiz-next-btn" disabled onclick="goNextQuestion()" class="px-6 py-2.5 rounded-xl bg-vividPink text-white font-bold text-xs tracking-wider disabled:opacity-40 disabled:cursor-not-allowed hover:bg-vividPink-hover shadow-neon transition-all flex items-center gap-1.5 focus:outline-none">
+                            <span>NEXT</span> <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Loading Transition / Reveal Result Area (Initially Hidden) -->
+                <div id="quiz-result-loading" class="hidden space-y-4 py-8 text-center">
+                    <div class="inline-block w-8 h-8 border-4 border-vividPink border-t-transparent rounded-full animate-spin"></div>
+                    <p class="text-xs text-themeMuted font-medium tracking-widest">분석 결과를 정렬하고 있습니다...</p>
+                </div>
+
+                <!-- Final Matching Result Screen (Initially Hidden) -->
+                <div id="quiz-result-section" class="hidden space-y-6 text-center py-4">
+                    <div class="inline-flex p-3 bg-emerald-500/10 rounded-full border border-emerald-500/25 text-3xl">
+                        🎯
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <h3 id="result-text-1" class="text-xs sm:text-sm font-bold text-themeMuted tracking-wider transition-opacity duration-700 opacity-0">
+                            당신이 찾던 동료는...
+                        </h3>
+                        <h2 id="result-text-2" class="text-2xl sm:text-4xl font-black text-gradient-pink tracking-tight transition-opacity duration-1000 opacity-0">
+                            바로 한가람입니다.
+                        </h2>
+                    </div>
+
+                    <div id="result-explanation" class="text-xs text-themeMuted font-light leading-relaxed max-w-sm mx-auto bg-navy-950 p-4 rounded-xl border border-navy-700 opacity-0 transition-opacity duration-1000">
+                        선택하신 가치관(팀워크, 적극성, 도전정신)에 부합하는 소통력과 기술력을 장착한 올라운더 최적 매칭 결과가 도출되었습니다.
+                    </div>
+
+                    <div id="result-cta" class="pt-4 opacity-0 transition-opacity duration-1000">
+                        <button onclick="revealMainWebsite()" class="px-8 py-3 rounded-xl bg-vividPink hover:bg-vividPink-hover text-white font-extrabold text-sm tracking-wider shadow-neon hover:scale-105 transition-all">
+                            소개 보러가기 <i class="fa-solid fa-arrow-right ml-1.5"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Responsive Floating Navigation Bar -->
+    <header class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-navy-950/80 border-b border-navy-700 py-3 transition-all" id="main-header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+            <a href="#intro" class="flex items-center space-x-2 focus:outline-none">
+                <span class="font-montserrat font-black text-lg sm:text-xl tracking-wider text-themeTitle">
+                    GARAM<span class="text-vividPink">.</span>
+                </span>
+            </a>
+            
+            <nav class="hidden lg:flex items-center space-x-8 text-xs font-semibold tracking-wide">
+                <a href="#intro" class="hover:text-vividPink transition-colors text-themeTitle">HOME</a>
+                <a href="#about" class="hover:text-vividPink transition-colors text-themeTitle">ABOUT ME</a>
+                <a href="#core-values" class="hover:text-vividPink transition-colors text-themeTitle">CORE VALUES</a>
+                <a href="#timeline" class="hover:text-vividPink transition-colors text-themeTitle">GROWTH</a>
+                <a href="#projects" class="hover:text-vividPink transition-colors text-themeTitle">PORTFOLIO</a>
+                <a href="#guestbook" class="hover:text-vividPink transition-colors text-themeTitle">GUESTBOOK</a>
+            </nav>
+
+            <div class="flex items-center space-x-3">
+                <!-- Theme Toggle Button -->
+                <button id="theme-switcher-btn" class="w-12 h-12 rounded-xl bg-navy-800 hover:bg-vividPink/10 text-themeTitle hover:text-vividPink transition-all flex flex-col items-center justify-center border border-navy-700 cursor-pointer focus:outline-none" aria-label="테마 스타일 변경">
+                    <i class="fa-solid fa-moon text-xs mb-0.5 theme-switcher-icon"></i>
+                    <span class="text-[8px] font-black tracking-widest font-montserrat leading-none theme-switcher-text">DARK</span>
+                </button>
+
+                <!-- Interactive Scroll Progress Gauge (Compact Circle Indicator) -->
+                <div class="relative w-12 h-12 flex items-center justify-center bg-navy-800 border border-navy-700 rounded-xl" title="스크롤 진행률">
+                    <svg class="w-10 h-10">
+                        <circle class="text-navy-700/40" stroke-width="3" stroke="currentColor" fill="transparent" r="16" cx="20" cy="20" />
+                        <circle class="text-vividPink progress-ring__circle" stroke-width="3" stroke-dasharray="100.53" stroke-dashoffset="100.53" stroke-linecap="round" stroke="currentColor" fill="transparent" r="16" cx="20" cy="20" id="scroll-progress-ring" />
+                    </svg>
+                    <span id="scroll-progress-text" class="absolute font-montserrat text-[9px] font-extrabold text-themeTitle">0%</span>
+                </div>
+
+                <a href="#contact" class="hidden sm:inline-flex px-4 py-2 rounded-lg text-xs font-bold bg-vividPink hover:bg-vividPink-hover text-white transition-all shadow-neon">
+                    협업 제안하기 <i class="fa-solid fa-paper-plane ml-1.5"></i>
+                </a>
+
+                <button class="lg:hidden text-themeTitle hover:text-vividPink focus:outline-none p-1" id="mobile-hamburger-btn" aria-label="메뉴 토글">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div class="hidden lg:hidden bg-navy-950/95 border-b border-navy-700 absolute w-full left-0 top-full backdrop-blur-xl shadow-2xl transition-all" id="mobile-drawer">
+            <div class="px-6 py-6 space-y-4 flex flex-col text-xs font-semibold">
+                <a href="#intro" class="hover:text-vividPink py-2 text-themeTitle border-b border-navy-700/50 flex items-center justify-between">HOME <i class="fa-solid fa-chevron-right text-[8px] text-themeMuted"></i></a>
+                <a href="#about" class="hover:text-vividPink py-2 text-themeTitle border-b border-navy-700/50 flex items-center justify-between">ABOUT ME <i class="fa-solid fa-chevron-right text-[8px] text-themeMuted"></i></a>
+                <a href="#core-values" class="hover:text-vividPink py-2 text-themeTitle border-b border-navy-700/50 flex items-center justify-between">CORE VALUES <i class="fa-solid fa-chevron-right text-[8px] text-themeMuted"></i></a>
+                <a href="#timeline" class="hover:text-vividPink py-2 text-themeTitle border-b border-navy-700/50 flex items-center justify-between">GROWTH <i class="fa-solid fa-chevron-right text-[8px] text-themeMuted"></i></a>
+                <a href="#projects" class="hover:text-vividPink py-2 text-themeTitle border-b border-navy-700/50 flex items-center justify-between">PORTFOLIO <i class="fa-solid fa-chevron-right text-[8px] text-themeMuted"></i></a>
+                <a href="#guestbook" class="hover:text-vividPink py-2 text-themeTitle border-b border-navy-700/50 flex items-center justify-between">GUESTBOOK <i class="fa-solid fa-chevron-right text-[8px] text-themeMuted"></i></a>
+                <a href="#contact" class="w-full text-center py-3 rounded-lg bg-vividPink text-white font-bold text-xs shadow-neon">
+                    협업 제안하기 <i class="fa-solid fa-paper-plane ml-1.5"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section 1: Hero Section -->
+    <section id="intro" class="reveal-section relative min-h-[85vh] flex items-center justify-center pt-20 overflow-hidden">
+        <div class="absolute top-1/4 left-1/4 w-72 h-72 bg-vividPink/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-72 h-72 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center z-10 py-8">
+            <!-- Left: Hero Text -->
+            <div class="lg:col-span-7 space-y-5 text-center lg:text-left order-2 lg:order-1">
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2">
+                    <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-navy-800 text-vividPink border border-vividPink/25">
+                        <i class="fa-solid fa-graduation-cap mr-1"></i> SSAFY 16기 AI·SW 트랙
+                    </span>
+                    <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-navy-800 text-blue-400 border border-blue-500/25">
+                        <i class="fa-solid fa-earth-asia mr-1"></i> 한-중 비즈니스 스페셜리스트
+                    </span>
+                </div>
+
+                <div class="space-y-2">
+                    <h2 class="text-base sm:text-lg font-bold text-vividPink">안녕하세요, 융합형 인재 한가람입니다.</h2>
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-themeTitle">
+                        멈추지 않는 호기심으로<br class="hidden sm:inline">
+                        세계를 넓히는 사람,<br>
+                        <span class="text-gradient-pink">한가람입니다.</span>
+                    </h1>
+                </div>
+
+                <p class="text-xs sm:text-sm md:text-base text-themeMuted max-w-xl mx-auto lg:mx-0 leading-relaxed font-light">
+                    중어중문·국제통상 복수전공과 칭화대 교환학생, 3회의 실전 비즈니스 기술 통역으로 어학 역량을 입증했습니다. 이제 <strong class="text-themeTitle font-medium">SSAFY 16기</strong>에서 고도화된 AI 및 SW 날개를 달고 세상을 혁신하는 주역으로 도약하고 있습니다.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
+                    <a href="#core-values" class="w-full sm:w-auto px-6 py-3 rounded-lg font-bold text-xs bg-vividPink hover:bg-vividPink-hover text-white transition-all text-center shadow-neon">
+                        포트폴리오 보기 <i class="fa-solid fa-arrow-down ml-1"></i>
+                    </a>
+                    <a href="#about" class="w-full sm:w-auto px-6 py-3 rounded-lg font-bold text-xs bg-navy-800 hover:bg-navy-700 text-themeTitle transition-all text-center border border-navy-700">
+                        나의 스토리 보기 <i class="fa-solid fa-user-check ml-1 text-themeMuted"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right: Compact Card -->
+            <div class="lg:col-span-5 relative flex justify-center items-center order-1 lg:order-2">
+                <div class="relative w-full max-w-[280px] rounded-3xl overflow-hidden bg-navy-900 border border-navy-700 p-5 shadow-xl transition-all pink-glow-hover">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-vividPink to-blue-500"></div>
+                    
+                    <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-tr from-vividPink to-blue-500 p-0.5 flex items-center justify-center shadow-md relative">
+                        <div class="w-full h-full rounded-full bg-navy-900 flex items-center justify-center text-2xl text-themeTitle">
+                            <i class="fa-solid fa-user-graduate"></i>
+                        </div>
+                        <span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-500 border-2 border-navy-900 rounded-full"></span>
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <h3 class="text-lg font-extrabold text-themeTitle">한가람</h3>
+                        <p class="text-[9px] text-vividPink font-montserrat font-extrabold tracking-wider mt-1 uppercase">Global SW/AI Collaborator</p>
+                    </div>
+
+                    <div class="mt-4 space-y-2 bg-navy-950 p-3 rounded-xl border border-navy-700 text-[11px]">
+                        <div class="flex items-center justify-between">
+                            <span class="text-themeMuted"><i class="fa-solid fa-code text-blue-400 mr-1.5"></i> Tech Platform</span>
+                            <span class="text-themeTitle font-medium">SSAFY 16th AI</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-themeMuted"><i class="fa-solid fa-earth-americas text-vividPink mr-1.5"></i> Languages</span>
+                            <span class="text-themeTitle font-medium">중국어·국제통상</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: About Me Section -->
+    <section id="about" class="reveal-section py-12 bg-navy-950/50 relative border-t border-navy-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center max-w-2xl mx-auto mb-8">
+                <span class="text-xs font-black uppercase tracking-widest text-vividPink font-montserrat">About Me</span>
+                <h2 class="text-xl sm:text-2xl font-extrabold text-themeTitle mt-2">문과적 소통력 × 이과적 기술력</h2>
+                <div class="w-12 h-1 bg-gradient-to-r from-vividPink to-blue-500 mx-auto mt-2 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+                <!-- Left Story Content -->
+                <div class="lg:col-span-7 bg-navy-900 border border-navy-700 p-6 rounded-2xl flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-bold text-themeTitle">인문·무역·기술을 연결하는 올라운더</h3>
+                        <p class="text-xs sm:text-sm text-themeMuted leading-relaxed font-light">
+                            중어중문학 학사와 국제통상학 복수전공을 거쳐 시장 분석과 글로벌 역량을 확보했고, 교직이수 과정을 완료하여 복잡한 개념을 정돈되고 친절하게 구조화하는 전달력을 길렀습니다.
+                        </p>
+                        <p class="text-xs sm:text-sm text-themeMuted leading-relaxed font-light">
+                            단순한 어학 경쟁력에 만족하지 않고, 세상을 구동하는 실제 무기인 '소프트웨어'를 지휘하기 위해 삼성 청년 SW 아카데미(SSAFY) 16기 과정에 뛰어들어 매일 데이터 분석 및 알고리즘 구현 실전 감각을 강화하는 중입니다.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap gap-1.5 pt-4 border-t border-navy-700/60 mt-4">
+                        <span class="px-2.5 py-1 bg-vividPink/10 text-vividPink text-[10px] font-bold rounded">#ENFJ_친화력</span>
+                        <span class="px-2.5 py-1 bg-blue-500/10 text-blue-400 text-[10px] font-bold rounded">#지치지않는_러너</span>
+                        <span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 text-[10px] font-bold rounded">#올라운더</span>
+                    </div>
+                </div>
+
+                <!-- Right Quick Credentials -->
+                <div class="lg:col-span-5 bg-navy-900 border border-navy-700 p-6 rounded-2xl flex flex-col justify-between">
+                    <div class="space-y-3.5 text-xs">
+                        <h4 class="text-[10px] font-black uppercase text-vividPink tracking-wider">Education & Credentials</h4>
+                        
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-navy-800 flex items-center justify-center text-themeTitle flex-shrink-0"><i class="fa-solid fa-graduation-cap text-xs"></i></div>
+                            <div>
+                                <h5 class="font-bold text-themeTitle">동국대학교 학사 졸업</h5>
+                                <p class="text-[10px] text-themeMuted">중어중문학 주전공 × 국제통상학 복수전공</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-navy-800 flex items-center justify-center text-vividPink flex-shrink-0"><i class="fa-solid fa-id-card text-xs"></i></div>
+                            <div>
+                                <h5 class="font-bold text-themeTitle">정교사 (2급) 교직 이수 완료</h5>
+                                <p class="text-[10px] text-themeMuted">체계적이고 명확한 스토리 지식 전달력</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-navy-800 flex items-center justify-center text-blue-400 flex-shrink-0"><i class="fa-solid fa-plane-departure text-xs"></i></div>
+                            <div>
+                                <h5 class="font-bold text-themeTitle">칭화대학교 교환학생 수료</h5>
+                                <p class="text-[10px] text-themeMuted">중국 베이징 현지 어학 및 최고 인맥 네트워킹</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-navy-800 flex items-center justify-center text-emerald-400 flex-shrink-0"><i class="fa-solid fa-laptop-code text-xs"></i></div>
+                            <div>
+                                <h5 class="font-bold text-themeTitle">삼성 청년 SW 아카데미 (SSAFY)</h5>
+                                <p class="text-[10px] text-themeMuted">16기 AI 트랙 엔지니어링 집중 훈련 중</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Core Value Cards Section (Clickable) -->
+    <section id="core-values" class="reveal-section py-12 bg-navy-900/10 relative border-t border-navy-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center max-w-2xl mx-auto mb-8">
+                <span class="text-xs font-black uppercase tracking-widest text-vividPink font-montserrat">Core Values</span>
+                <h2 class="text-xl sm:text-2xl font-extrabold text-themeTitle mt-2">클릭하여 핵심 무기 상세확인</h2>
+                <p class="text-[11px] text-themeMuted mt-1">카드를 클릭하면 각 프로젝트 검증 구역으로 자동 스크롤됩니다.</p>
+                <div class="w-12 h-1 bg-gradient-to-r from-vividPink to-blue-500 mx-auto mt-2 rounded-full"></div>
+            </div>
+
+            <!-- Clickable Cards with 6px lift and shadow -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1: GLOBAL -->
+                <a href="#project-global" class="p-6 rounded-2xl bg-navy-900 border border-navy-700 group hover:shadow-neon transition-all flex flex-col justify-between pink-glow-hover cursor-pointer">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-vividPink/10 flex items-center justify-center text-vividPink text-xl mb-4 group-hover:scale-105 transition-transform">
+                            <i class="fa-solid fa-earth-asia"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-themeTitle font-sans">01. GLOBAL (글로벌 역량)</h3>
+                        <p class="text-[10px] text-vividPink font-semibold mt-1">칭화대 교환학생 & 통역 3회</p>
+                        <p class="text-xs text-themeMuted mt-3 leading-relaxed font-light">
+                            HSK 6급 최상위 레벨과 실제 바이어 무역 현장의 3회 통역 실무 경험으로 완전무결한 어학 감각을 증명합니다.
+                        </p>
+                    </div>
+                    <div class="mt-5 pt-3 border-t border-navy-800 flex items-center justify-between text-[10px] font-bold text-vividPink">
+                        <span>상세 확인하기</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </a>
+
+                <!-- Card 2: TECH -->
+                <a href="#project-tech" class="p-6 rounded-2xl bg-navy-900 border border-navy-700 group hover:shadow-neon transition-all flex flex-col justify-between pink-glow-hover cursor-pointer">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 text-xl mb-4 group-hover:scale-105 transition-transform">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-themeTitle font-sans">02. TECH (기술적 도전)</h3>
+                        <p class="text-[10px] text-blue-400 font-semibold mt-1">SSAFY 16기 AI·SW 엔지니어</p>
+                        <p class="text-xs text-themeMuted mt-3 leading-relaxed font-light">
+                            알고리즘 및 머신러닝 모형 설계, 리액트를 활용한 웹 솔루션 구조화까지 인문 기획을 실제 제품으로 구현합니다.
+                        </p>
+                    </div>
+                    <div class="mt-5 pt-3 border-t border-navy-800 flex items-center justify-between text-[10px] font-bold text-blue-400">
+                        <span>상세 확인하기</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </a>
+
+                <!-- Card 3: ENERGY -->
+                <a href="#project-energy" class="p-6 rounded-2xl bg-navy-900 border border-navy-700 group hover:shadow-neon transition-all flex flex-col justify-between pink-glow-hover cursor-pointer">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-xl mb-4 group-hover:scale-105 transition-transform">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-themeTitle font-sans">03. ENERGY (실행과 협업)</h3>
+                        <p class="text-[10px] text-emerald-400 font-semibold mt-1">중앙동아리 부회장 & 운동 매니아</p>
+                        <p class="text-xs text-themeMuted mt-3 leading-relaxed font-light">
+                            수영·러닝·등산으로 쌓은 강인한 피지컬과 대규모 동아리 부회장 시절 조율 능력을 갖춘 윤활유 인재입니다.
+                        </p>
+                    </div>
+                    <div class="mt-5 pt-3 border-t border-navy-800 flex items-center justify-between text-[10px] font-bold text-emerald-400">
+                        <span>상세 확인하기</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Growth Timeline Section -->
+    <section id="timeline" class="reveal-section py-12 bg-navy-950/60 relative border-t border-navy-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center max-w-2xl mx-auto mb-8">
+                <span class="text-xs font-black uppercase tracking-widest text-vividPink font-montserrat">Growth Road</span>
+                <h2 class="text-xl sm:text-2xl font-extrabold text-themeTitle mt-2">핵심 성장 타임라인</h2>
+                <div class="w-12 h-1 bg-gradient-to-r from-vividPink to-blue-500 mx-auto mt-2 rounded-full"></div>
+            </div>
+
+            <!-- Compact Road Map -->
+            <div class="relative max-w-3xl mx-auto text-xs sm:text-sm">
+                <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-[2px] bg-navy-700/60" style="background-color: var(--timeline-line);"></div>
+
+                <!-- Stage 1 -->
+                <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8 md:even:flex-row-reverse group">
+                    <div class="absolute left-4 md:left-1/2 transform -translate-x-[5px] md:-translate-x-1/2 w-3 h-3 rounded-full bg-vividPink border-2 border-navy-950 z-10"></div>
+                    <div class="w-full md:w-[calc(50%-1.5rem)] ml-8 md:ml-0 bg-navy-900 border border-navy-700 p-4 rounded-xl">
+                        <span class="text-[9px] font-black text-vividPink">STAGE 01. 학업 및 전달력</span>
+                        <h4 class="font-bold text-themeTitle mt-1">학사 졸업 & 교직이수</h4>
+                        <p class="text-xs text-themeMuted mt-1 font-light">중문·국제통상 복수전공으로 넓은 시야 확보 및 구조화 소통력 확보.</p>
+                    </div>
+                    <div class="hidden md:block w-[calc(50%-1.5rem)]"></div>
+                </div>
+
+                <!-- Stage 2 -->
+                <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8 md:flex-row-reverse group">
+                    <div class="absolute left-4 md:left-1/2 transform -translate-x-[5px] md:-translate-x-1/2 w-3 h-3 rounded-full bg-blue-400 border-2 border-navy-950 z-10"></div>
+                    <div class="w-full md:w-[calc(50%-1.5rem)] ml-8 md:ml-0 bg-navy-900 border border-navy-700 p-4 rounded-xl">
+                        <span class="text-[9px] font-black text-blue-400">STAGE 02. 글로벌 실전</span>
+                        <h4 class="font-bold text-themeTitle mt-1">칭화대 & 비즈니스 통역 3회</h4>
+                        <p class="text-xs text-themeMuted mt-1 font-light">계약 조항 분석 및 최고 난이도의 한중 기술 비즈니스 실전 통역 정복.</p>
+                    </div>
+                    <div class="hidden md:block w-[calc(50%-1.5rem)]"></div>
+                </div>
+
+                <!-- Stage 3 -->
+                <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-4 group">
+                    <div class="absolute left-4 md:left-1/2 transform -translate-x-[5px] md:-translate-x-1/2 w-3 h-3 rounded-full bg-emerald-400 border-2 border-navy-950 z-10"></div>
+                    <div class="w-full md:w-[calc(50%-1.5rem)] ml-8 md:ml-0 bg-navy-900 border border-navy-700 p-4 rounded-xl">
+                        <span class="text-[9px] font-black text-emerald-400">STAGE 03. 현재의 융합</span>
+                        <h4 class="font-bold text-themeTitle mt-1">SSAFY 16기 AI·SW 최적화</h4>
+                        <p class="text-xs text-themeMuted mt-1 font-light">인공지능 알고리즘 분석 및 견고한 웹 프로덕트 구축 중.</p>
+                    </div>
+                    <div class="hidden md:block w-[calc(50%-1.5rem)]"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Skills & Projects Section -->
+    <section id="projects" class="reveal-section py-12 bg-navy-900/10 relative border-t border-navy-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center max-w-2xl mx-auto mb-8">
+                <span class="text-xs font-black uppercase tracking-widest text-vividPink font-montserrat">Portfolio Hub</span>
+                <h2 class="text-xl sm:text-2xl font-extrabold text-themeTitle mt-2">융합 인재 가람의 4대 핵심 증명서</h2>
+                <div class="w-12 h-1 bg-gradient-to-r from-vividPink to-blue-500 mx-auto mt-2 rounded-full"></div>
+            </div>
+
+            <!-- Grid Layout with 6px lift cards -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                <!-- Card 1: Language & Trade (GLOBAL 상세) -->
+                <div id="project-global" class="rounded-2xl overflow-hidden bg-navy-900 group flex flex-col justify-between pink-glow-hover scroll-mt-24">
+                    <div class="p-5 bg-navy-950 border-b border-navy-700 flex justify-between items-center">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-vividPink bg-vividPink/10 px-2.5 py-1 rounded">Language & Trade</span>
+                        <div class="flex items-center gap-3 text-xs font-bold text-themeTitle font-montserrat">
+                            <span>HSK 6급</span>
+                            <span class="text-navy-700">|</span>
+                            <span>TSK 비즈니스</span>
+                        </div>
+                    </div>
+                    <div class="p-5 space-y-2 flex-1">
+                        <h3 class="font-extrabold text-themeTitle text-base font-sans">글로벌 커뮤니케이션 & 무역 실무</h3>
+                        <p class="text-xs text-themeMuted leading-relaxed font-light">
+                            단순 성적을 넘어 바이어 상담, 계약 분석, 비즈니스 기술 통역을 3차례 전담하며 글로벌 현장 소통을 성공시켰습니다.
+                        </p>
+                        <div class="flex flex-wrap gap-1 mt-2">
+                            <span class="px-2 py-0.5 bg-navy-800 text-[9px] text-themeMuted rounded">칭화대학교</span>
+                            <span class="px-2 py-0.5 bg-navy-800 text-[9px] text-themeMuted rounded">무역 조항 리스크 통제</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: AI & Software (TECH 상세) -->
+                <div id="project-tech" class="rounded-2xl overflow-hidden bg-navy-900 group flex flex-col justify-between pink-glow-hover scroll-mt-24">
+                    <div class="p-5 bg-navy-950 border-b border-navy-700 flex justify-between items-center">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-blue-400 bg-blue-500/10 px-2.5 py-1 rounded">AI & Software</span>
+                        <span class="text-[10px] font-mono text-emerald-400"><i class="fa-solid fa-terminal mr-1"></i>python 3.10+</span>
+                    </div>
+                    <div class="p-5 space-y-2 flex-1">
+                        <h3 class="font-extrabold text-themeTitle text-base font-sans">인공지능 솔루션 개발</h3>
+                        <p class="text-xs text-themeMuted leading-relaxed font-light">
+                            SSAFY AI 트랙의 체계적 커리큘럼 기반 NLP 전처리, 머신러닝 모형 정립, 그리고 이를 제어하는 API 아키텍처를 유연하게 구축합니다.
+                        </p>
+                        <div class="flex flex-wrap gap-1 mt-2">
+                            <span class="px-2 py-0.5 bg-navy-800 text-[9px] text-themeMuted rounded font-montserrat">MySQL</span>
+                            <span class="px-2 py-0.5 bg-navy-800 text-[9px] text-themeMuted rounded font-montserrat">Git Workflow</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Collaboration (ENERGY 상세) -->
+                <div id="project-energy" class="rounded-2xl overflow-hidden bg-navy-900 group flex flex-col justify-between pink-glow-hover scroll-mt-24">
+                    <div class="p-5 bg-navy-950 border-b border-navy-700 flex justify-between items-center">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded">Collaboration</span>
+                        <span class="text-[10px] font-bold text-themeTitle">ENFJ형 리더십</span>
+                    </div>
+                    <div class="p-5 space-y-2 flex-1">
+                        <h3 class="font-extrabold text-themeTitle text-base font-sans">중앙동아리 부회장 리더십</h3>
+                        <p class="text-xs text-themeMuted leading-relaxed font-light">
+                            100명 규모 조직의 갈등을 원만히 해결하고 예산 흐름과 대형 행사를 조율하며 팀 워크의 윤활유 역할을 완수했습니다.
+                        </p>
+                        <div class="flex flex-wrap gap-1 mt-2">
+                            <span class="px-2 py-0.5 bg-navy-800 text-[9px] text-themeMuted rounded">갈등 해결 메커니즘</span>
+                            <span class="px-2 py-0.5 bg-navy-800 text-[9px] text-themeMuted rounded">리더십 지표</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Lifestyle Curation -->
+                <div id="project-lifestyle" class="rounded-2xl overflow-hidden bg-navy-900 group flex flex-col justify-between pink-glow-hover scroll-mt-24">
+                    <div class="p-5 bg-navy-950 border-b border-navy-700 flex justify-between items-center">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-purple-400 bg-purple-500/10 px-2.5 py-1 rounded">Lifestyle Curation</span>
+                        <span class="text-[10px] text-themeMuted"><i class="fa-solid fa-palette mr-1"></i>트렌드 안목</span>
+                    </div>
+                    <div class="p-5 space-y-2 flex-1">
+                        <h3 class="font-extrabold text-themeTitle text-base font-sans">체력 및 트렌드 인사이트</h3>
+                        <p class="text-xs text-themeMuted leading-relaxed font-light">
+                            매일 아침 10km 러닝 및 수영으로 단련된 튼튼한 복원력과 뮤지컬, 회화, 브랜드 큐레이션 등의 예술적 감각이 융합되었습니다.
+                        </p>
+                        <div class="flex flex-wrap gap-1 mt-2">
+                            <span class="px-2 py-0.5 bg-navy-800 text-[9px] text-themeMuted rounded">강인한 실행력</span>
+                            <span class="px-2 py-0.5 bg-navy-800 text-[9px] text-themeMuted rounded">트렌드 스캐닝</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Interactive Guestbook (방명록 & 응원 댓글 작성) -->
+    <section id="guestbook" class="reveal-section py-16 bg-navy-950/40 relative border-t border-navy-700 scroll-mt-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-xs font-black uppercase tracking-widest text-vividPink font-montserrat">Guestbook</span>
+                <h2 class="text-xl sm:text-2xl font-extrabold text-themeTitle mt-2">한가람에게 남기는 응원 한마디</h2>
+                <p class="text-[11px] text-themeMuted mt-1">방문 후기나 격려의 댓글을 실시간으로 남겨주세요!</p>
+                <div class="w-12 h-1 bg-gradient-to-r from-vividPink to-blue-500 mx-auto mt-2 rounded-full"></div>
+            </div>
+
+            <!-- Comment Input & List Area -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+                
+                <!-- Comment Form -->
+                <div class="md:col-span-5 bg-navy-900 border border-navy-700 p-5 rounded-2xl space-y-4">
+                    <h3 class="text-sm font-bold text-themeTitle flex items-center gap-2">
+                        <i class="fa-regular fa-comment-dots text-vividPink"></i> 댓글 쓰기
+                    </h3>
+                    
+                    <form id="comment-form" onsubmit="handleCommentSubmit(event)" class="space-y-3">
+                        <div>
+                            <label for="comment-writer" class="text-[10px] font-bold text-themeMuted block mb-1">작성자 닉네임</label>
+                            <input type="text" id="comment-writer" required placeholder="예: 인사담당자 홍길동" class="w-full bg-navy-950 border border-navy-700 p-2 rounded-lg text-xs text-themeTitle focus:outline-none focus:border-vividPink font-medium">
+                        </div>
+
+                        <div>
+                            <label class="text-[10px] font-bold text-themeMuted block mb-1">프로필 아바타 선택</label>
+                            <div class="grid grid-cols-5 gap-1.5" id="emoji-selector">
+                                <button type="button" onclick="selectEmoji(this, '💼')" class="emoji-btn p-1.5 rounded-lg bg-navy-950 border border-vividPink hover:bg-navy-800 text-sm text-center transition-all focus:outline-none">💼</button>
+                                <button type="button" onclick="selectEmoji(this, '🚀')" class="emoji-btn p-1.5 rounded-lg bg-navy-950 border border-transparent hover:bg-navy-800 text-sm text-center transition-all focus:outline-none">🚀</button>
+                                <button type="button" onclick="selectEmoji(this, '💡')" class="emoji-btn p-1.5 rounded-lg bg-navy-950 border border-transparent hover:bg-navy-800 text-sm text-center transition-all focus:outline-none">💡</button>
+                                <button type="button" onclick="selectEmoji(this, '🏃')" class="emoji-btn p-1.5 rounded-lg bg-navy-950 border border-transparent hover:bg-navy-800 text-sm text-center transition-all focus:outline-none">🏃</button>
+                                <button type="button" onclick="selectEmoji(this, '✨')" class="emoji-btn p-1.5 rounded-lg bg-navy-950 border border-transparent hover:bg-navy-800 text-sm text-center transition-all focus:outline-none">✨</button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="comment-body" class="text-[10px] font-bold text-themeMuted block mb-1">응원 메시지</label>
+                            <textarea id="comment-body" rows="3" required placeholder="따뜻한 한마디를 남겨주세요." class="w-full bg-navy-950 border border-navy-700 p-2 rounded-lg text-xs text-themeTitle focus:outline-none focus:border-vividPink resize-none font-medium"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-2.5 rounded-lg bg-vividPink hover:bg-vividPink-hover text-white font-extrabold text-xs transition-all flex items-center justify-center gap-1.5 shadow-neon">
+                            <i class="fa-solid fa-paper-plane text-[10px]"></i> 등록하기
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Comment List Feed -->
+                <div class="md:col-span-7 space-y-3 max-h-[380px] overflow-y-auto pr-1" id="comments-container">
+                    <!-- Dynamic comments will be injected here by Javascript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="reveal-section py-12 bg-gradient-to-r from-navy-900 to-navy-950 border-t border-navy-700 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-vividPink/5 to-transparent pointer-events-none"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10 space-y-4">
+            <h2 class="text-xl sm:text-2xl font-extrabold text-themeTitle tracking-tight">
+                준비된 융합형 인재, 한가람과 함께 달릴 기업을 찾습니다.
+            </h2>
+            <p class="text-xs text-themeMuted max-w-lg mx-auto font-light">
+                글로벌 지평, 고도화된 SW 교육, 단단한 리더십을 갖춘 한가람을 팀원으로 확보해 보세요.
+            </p>
+            <div class="pt-2">
+                <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-vividPink hover:bg-vividPink-hover text-white font-extrabold text-xs tracking-wide transition-all transform hover:scale-105 shadow-neon">
+                    채용 제안 및 연락처 보기 <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Footer & Contact Section (Styled exactly like image_ef815c.png) -->
+    <footer id="contact" class="reveal-section bg-navy-950 border-t border-navy-700 py-12 sm:py-20 relative overflow-hidden">
+        <div class="absolute bottom-0 right-0 w-80 h-80 bg-vividPink/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+                
+                <!-- Col 1: Contact Direct Information (Matches left side of image_ef815c.png) -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div>
+                        <span class="text-xs font-black uppercase tracking-widest text-vividPink font-montserrat">CONTACT & PITCH</span>
+                        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-themeTitle mt-3 leading-tight">
+                            가장 단단하고 믿음직한 파<br class="hidden lg:inline">트너와 연결되세요
+                        </h2>
+                        <div class="w-10 h-0.5 bg-vividPink mt-4"></div>
+                    </div>
+                    
+                    <p class="text-xs text-themeMuted leading-relaxed font-light">
+                        글로벌 통역 역량과 탄탄한 AI/SW 개발 역량을 장착한 융합형 인재를 원하신다면, 지금 바로 연락해 주세요. 인사담당자분들의 소중한 한 걸음에 멈추지 않는 도전으로 응답하겠습니다.
+                    </p>
+
+                    <!-- Contact Details List -->
+                    <div class="space-y-3.5">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-navy-800 flex items-center justify-center text-vividPink border border-navy-700">
+                                <i class="fa-solid fa-envelope text-xs"></i>
+                            </div>
+                            <div>
+                                <p class="text-[8px] text-themeMuted uppercase font-extrabold tracking-widest leading-none">이메일 연락처</p>
+                                <a href="mailto:hangaram@example.com" class="text-xs font-bold text-themeTitle hover:underline">hangaram@example.com</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-navy-800 flex items-center justify-center text-blue-400 border border-navy-700">
+                                <i class="fa-brands fa-linkedin text-xs"></i>
+                            </div>
+                            <div>
+                                <p class="text-[8px] text-themeMuted uppercase font-extrabold tracking-widest leading-none">링크드인 연결</p>
+                                <a href="https://linkedin.com/in/hangaram" target="_blank" class="text-xs font-bold text-themeTitle hover:underline">linkedin.com/in/hangaram</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-navy-800 flex items-center justify-center text-emerald-400 border border-navy-700">
+                                <i class="fa-brands fa-github text-xs"></i>
+                            </div>
+                            <div>
+                                <p class="text-[8px] text-themeMuted uppercase font-extrabold tracking-widest leading-none">GITHUB 레포지토리</p>
+                                <a href="https://github.com/hangaram" target="_blank" class="text-xs font-bold text-themeTitle hover:underline">github.com/hangaram</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PDF Mock Resume Download -->
+                    <div class="pt-2">
+                        <button onclick="downloadInteractiveResume()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-transparent hover:bg-navy-800 text-themeTitle border border-navy-700 hover:border-vividPink text-xs font-bold transition-all focus:outline-none">
+                            <i class="fa-solid fa-file-pdf text-vividPink"></i> <span>한가람 국문 이력서 다운로드</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Col 2: Action Suggestion Mail Box (Matches right card of image_ef815c.png) -->
+                <div class="lg:col-span-7 bg-navy-900 border border-navy-700 p-6 sm:p-8 rounded-2xl relative shadow-2xl">
+                    <div id="form-success-toast" class="hidden mb-4 p-3 bg-emerald-500/10 border border-emerald-500/30 text-emerald-500 text-xs rounded-xl text-center flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>채용 제안이 정상적으로 전송되었습니다!</span>
+                    </div>
+
+                    <form id="contact-proposal-form" onsubmit="submitFormFake(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="form-name" class="text-xs font-bold text-themeTitle block mb-1.5">성함 / 담당자 직함 *</label>
+                                <input type="text" id="form-name" required placeholder="예: 인사담당자 홍길동" class="w-full bg-navy-950 border border-navy-700 p-2.5 rounded-lg text-xs text-themeTitle focus:outline-none focus:border-vividPink font-medium">
+                            </div>
+                            <div>
+                                <label for="form-company" class="text-xs font-bold text-themeTitle block mb-1.5">기업명 / 소속 *</label>
+                                <input type="text" id="form-company" required placeholder="예: 한가람 코퍼레이션" class="w-full bg-navy-950 border border-navy-700 p-2.5 rounded-lg text-xs text-themeTitle focus:outline-none focus:border-vividPink font-medium">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="form-email" class="text-xs font-bold text-themeTitle block mb-1.5">연락 가능한 이메일 주소 *</label>
+                            <input type="email" id="form-email" required placeholder="예: HR@company.com" class="w-full bg-navy-950 border border-navy-700 p-2.5 rounded-lg text-xs text-themeTitle focus:outline-none focus:border-vividPink font-medium">
+                        </div>
+
+                        <div>
+                            <label for="form-content" class="text-xs font-bold text-themeTitle block mb-1.5">제안 내용 및 메시지 *</label>
+                            <textarea id="form-content" rows="4" required placeholder="한가람 님께 제안하실 비즈니스 협업 내용이나 프로젝트 제안을 적어주세요." class="w-full bg-navy-950 border border-navy-700 p-2.5 rounded-lg text-xs text-themeTitle focus:outline-none focus:border-vividPink resize-none font-medium"></textarea>
+                        </div>
+
+                        <div class="flex items-start gap-2.5">
+                            <input type="checkbox" id="terms" required class="accent-vividPink w-3.5 h-3.5 mt-0.5 rounded cursor-pointer">
+                            <label for="terms" class="text-[10px] text-themeMuted select-none cursor-pointer leading-relaxed">
+                                개인정보 수집 및 협업 제안을 위해 연락처를 활용하는 데 동의합니다.
+                            </label>
+                        </div>
+
+                        <button type="submit" class="w-full py-3 rounded-lg bg-vividPink hover:bg-vividPink-hover text-white font-extrabold text-xs shadow-neon transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2 focus:outline-none">
+                            <i class="fa-solid fa-paper-plane"></i> <span>제안하기</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Footer Bottom Credit -->
+            <div class="mt-12 pt-6 border-t border-navy-800 text-center space-y-2">
+                <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-xs font-semibold text-themeTitle">
+                    <a href="#intro" class="hover:text-vividPink transition-colors">HOME</a>
+                    <a href="#about" class="hover:text-vividPink transition-colors">ABOUT</a>
+                    <a href="#core-values" class="hover:text-vividPink transition-colors">VALUES</a>
+                    <a href="#timeline" class="hover:text-vividPink transition-colors">ROAD</a>
+                    <a href="#projects" class="hover:text-vividPink transition-colors">PORTFOLIO</a>
+                    <a href="#guestbook" class="hover:text-vividPink transition-colors">GUESTBOOK</a>
+                </div>
+                <p class="text-[10px] text-themeMuted font-medium leading-relaxed">
+                    © 2026 Han Garam. All Rights Reserved. Built with Passion & Convergence Mindset.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Pure JavaScript Logics -->
+    <script>
+        // Quiz Data Definition
+        const quizData = [
+            {
+                question: "1. 새 프로젝트 기획 단계에서, 당신이 가장 선호하는 팀원의 협업 방식은 무엇입니까?",
+                options: [
+                    { text: "팀원들의 의견을 조율하고 경청하며 원만한 윤활유 역할을 해주는 소통 중시형", type: "ENFJ" },
+                    { text: "해외 레퍼런스와 최신 기술 동향을 탐색하여 글로벌 시장성까지 함께 파악해주는 전략형", type: "GLOBAL" },
+                    { text: "실제 기획한 내용을 완벽한 코드와 실시간 데이터 모델로 빠르게 증명하는 기술형", type: "TECH" }
+                ]
+            },
+            {
+                question: "2. 긴박한 마감 일정 및 기술적 장벽이 생겼을 때, 어떤 형태의 문제 대처 능력이 필요하십니까?",
+                options: [
+                    { text: "지치지 않는 체력과 긍정적이고 단단한 마인드로 팀의 사기를 끝까지 붙잡는 역량", type: "ENERGY" },
+                    { text: "기존의 전공이나 편견에 갇히지 않고, 새로운 AI 및 소프트웨어 패러다임을 빠르게 학습하고 개척하는 도전 정신", type: "TECH" },
+                    { text: "해외 바이어나 이해관계자와의 정교한 3자 소통을 통해 복잡한 오해를 풀어내고 조율하는 어학 역량", type: "GLOBAL" }
+                ]
+            },
+            {
+                question: "3. 팀원을 채용할 때 가장 중요하게 고려하는 '팀원의 성장 멘탈리티'는 무엇입니까?",
+                options: [
+                    { text: "문과적 소통력과 이과적 논리력을 합쳐 복잡한 비즈니스 리스크를 극복해나가는 융합형 시야", type: "HYBRID" },
+                    { text: "실제 무역/계약 조항이나 최고 인적 네트워크와의 계약을 성공적으로 통제하는 실행력", type: "GLOBAL" },
+                    { text: "SSAFY 등 가혹한 개발 트레이닝 과정을 버텨내며 견고한 웹 프로덕트를 빌드업하는 주도력", type: "TECH" }
+                ]
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        // Keep track of user's answer history for back restoration
+        const userAnswers = [null, null, null];
+
+        function startQuiz() {
+            document.getElementById('quiz-intro-section').classList.add('hidden');
+            document.getElementById('quiz-questions-section').classList.remove('hidden');
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const currentData = quizData[currentQuestionIndex];
+            
+            // Update progress indicator & bar width
+            document.getElementById('quiz-step-indicator').innerText = `Question ${currentQuestionIndex + 1} of 3`;
+            const progressPercent = ((currentQuestionIndex + 1) / 3) * 100;
+            document.getElementById('quiz-progress-fill').style.width = `${progressPercent}%`;
+
+            // Render Title
+            document.getElementById('quiz-question-title').innerText = currentData.question;
+            
+            // Manage Back Button visibility
+            const backBtn = document.getElementById('quiz-back-btn');
+            if (currentQuestionIndex === 0) {
+                backBtn.classList.add('invisible');
+            } else {
+                backBtn.classList.remove('invisible');
+            }
+
+            // Options Renderer (Uses CSS variable classes to support theme transition seamlessly)
+            const optionsContainer = document.getElementById('quiz-options-container');
+            optionsContainer.innerHTML = '';
+            
+            // Re-enable / check buttons state from userAnswers history
+            const previouslyChosen = userAnswers[currentQuestionIndex];
+            const nextBtn = document.getElementById('quiz-next-btn');
+            nextBtn.disabled = !previouslyChosen;
+
+            currentData.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                
+                // Style uses theme tokens (bg-navy-800, border-navy-700, text-themeText) for absolute readability on all themes
+                btn.className = "w-full text-left p-4 rounded-xl bg-navy-800 hover:bg-navy-800/80 border border-navy-700 text-xs sm:text-sm text-themeText font-semibold transition-all focus:outline-none flex items-center justify-between group";
+                
+                const isSelected = previouslyChosen && previouslyChosen.text === opt.text;
+                
+                btn.innerHTML = `
+                    <span class="pr-4 leading-relaxed">${opt.text}</span>
+                    <span class="w-5 h-5 rounded-full border ${isSelected ? 'border-vividPink text-vividPink' : 'border-themeMuted text-transparent'} flex items-center justify-center text-[10px] group-hover:border-vividPink transition-all shrink-0">✓</span>
+                `;
+                
+                if (isSelected) {
+                    btn.classList.add('border-vividPink', 'bg-vividPink/5');
+                }
+
+                btn.onclick = () => {
+                    // Reset selected styles
+                    Array.from(optionsContainer.children).forEach(child => {
+                        child.classList.remove('border-vividPink', 'bg-vividPink/5');
+                        const checkCircle = child.querySelector('span:last-child');
+                        checkCircle.classList.add('text-transparent');
+                        checkCircle.classList.remove('text-vividPink', 'border-vividPink');
+                    });
+                    
+                    // Style current
+                    btn.classList.add('border-vividPink', 'bg-vividPink/5');
+                    const myCheckCircle = btn.querySelector('span:last-child');
+                    myCheckCircle.classList.remove('text-transparent');
+                    myCheckCircle.classList.add('text-vividPink', 'border-vividPink');
+                    
+                    userAnswers[currentQuestionIndex] = opt;
+                    nextBtn.disabled = false;
+                };
+
+                optionsContainer.appendChild(btn);
+            });
+
+            // Adjust Next Button Text
+            if (currentQuestionIndex === 2) {
+                nextBtn.querySelector('span').innerText = 'RESULT';
+            } else {
+                nextBtn.querySelector('span').innerText = 'NEXT';
+            }
+        }
+
+        function goPrevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+            }
+        }
+
+        function goNextQuestion() {
+            if (currentQuestionIndex < 2) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                showMatchingLoader();
+            }
+        }
+
+        function showMatchingLoader() {
+            document.getElementById('quiz-questions-section').classList.add('hidden');
+            document.getElementById('quiz-progress-wrapper').classList.add('hidden');
+            document.getElementById('quiz-progress-bar').classList.add('hidden');
+            document.getElementById('quiz-result-loading').classList.remove('hidden');
+
+            // Fake thinking delay for engagement
+            setTimeout(() => {
+                document.getElementById('quiz-result-loading').classList.add('hidden');
+                revealQuizResult();
+            }, 1800);
+        }
+
+        function revealQuizResult() {
+            document.getElementById('quiz-result-section').classList.remove('hidden');
+            
+            const text1 = document.getElementById('result-text-1');
+            const text2 = document.getElementById('result-text-2');
+            const explanation = document.getElementById('result-explanation');
+            const cta = document.getElementById('result-cta');
+
+            // Beautiful sequential fade transitions
+            setTimeout(() => {
+                text1.classList.remove('opacity-0');
+            }, 300);
+
+            setTimeout(() => {
+                text2.classList.remove('opacity-0');
+            }, 1200);
+
+            setTimeout(() => {
+                explanation.classList.remove('opacity-0');
+            }, 2000);
+
+            setTimeout(() => {
+                cta.classList.remove('opacity-0');
+            }, 2600);
+        }
+
+        function revealMainWebsite() {
+            const gate = document.getElementById('quiz-landing-gate');
+            gate.classList.add('fade-out');
+            
+            // Enable scrolling on main website once introductory lock decays
+            setTimeout(() => {
+                gate.style.display = 'none';
+                document.body.classList.remove('overflow-hidden');
+                
+                // Manually trigger intersection observer for sections in view immediately
+                window.scrollTo({ top: 0, behavior: 'instant' });
+                document.querySelectorAll('.reveal-section').forEach(sec => {
+                    const rect = sec.getBoundingClientRect();
+                    if (rect.top < window.innerHeight) {
+                        sec.classList.add('revealed');
+                    }
+                });
+            }, 800);
+        }
+
+        // Guestbook State Management (In-Memory initially seeded with rich recruiters content)
+        let comments = [
+            {
+                id: 1,
+                writer: "인사담당자 김민수",
+                emoji: "💼",
+                body: "동국대 글로벌 무역 역량에 SSAFY 개발 교육까지 더해지니 훌륭한 융합 스펙이네요! 조만간 유선으로 미팅 제안드리겠습니다.",
+                date: "방금 전"
+            },
+            {
+                id: 2,
+                writer: "SSAFY 동료 이지현",
+                emoji: "🚀",
+                body: "가람님! 항상 아침 일찍 등산하고 러닝하시는 열정이 프로젝트 협업할 때도 고스란히 묻어납니다. 늘 응원해요!",
+                date: "1시간 전"
+            },
+            {
+                id: 3,
+                writer: "테크 리더 최수현",
+                emoji: "💡",
+                body: "인문학적 소통 센스와 견고한 개발 논리력이 조화로운 보기 드문 인재네요. 끝까지 응원하겠습니다.",
+                date: "어제"
+            }
+        ];
+
+        let selectedEmojiChar = "💼";
+
+        function selectEmoji(buttonElement, emoji) {
+            // Deselect all buttons
+            document.querySelectorAll('#emoji-selector button').forEach(btn => {
+                btn.classList.remove('border-vividPink');
+                btn.classList.add('border-transparent');
+            });
+            // Select clicked button
+            buttonElement.classList.add('border-vividPink');
+            buttonElement.classList.remove('border-transparent');
+            selectedEmojiChar = emoji;
+        }
+
+        function renderComments() {
+            const container = document.getElementById('comments-container');
+            container.innerHTML = '';
+
+            if (comments.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-10 bg-navy-900 border border-navy-700 rounded-2xl">
+                        <p class="text-xs text-themeMuted">작성된 응원 댓글이 없습니다. 첫 마디를 남겨보세요!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            comments.forEach((comment, index) => {
+                const commentNode = document.createElement('div');
+                // Apply animate class only if it's the freshly created topmost item
+                const animationClass = index === 0 && comment.id > 3 ? 'animate-comment-node' : '';
+                commentNode.className = `p-4 rounded-xl bg-navy-900 border border-navy-700 flex gap-3.5 items-start ${animationClass}`;
+                
+                commentNode.innerHTML = `
+                    <div class="w-10 h-10 rounded-lg bg-navy-800 flex items-center justify-center text-lg flex-shrink-0 border border-navy-700 select-none">
+                        ${comment.emoji}
+                    </div>
+                    <div class="space-y-1 flex-1">
+                        <div class="flex items-center justify-between">
+                            <h4 class="text-xs font-extrabold text-themeTitle">${escapeHtml(comment.writer)}</h4>
+                            <span class="text-[9px] text-themeMuted font-mono">${comment.date}</span>
+                        </div>
+                        <p class="text-xs text-themeMuted leading-relaxed font-light break-all">${escapeHtml(comment.body)}</p>
+                    </div>
+                `;
+                container.appendChild(commentNode);
+            });
+        }
+
+        function handleCommentSubmit(event) {
+            event.preventDefault();
+            const writerInput = document.getElementById('comment-writer');
+            const bodyInput = document.getElementById('comment-body');
+
+            const newComment = {
+                id: Date.now(),
+                writer: writerInput.value,
+                emoji: selectedEmojiChar,
+                body: bodyInput.value,
+                date: "방금 전"
+            };
+
+            // Insert to the front of array
+            comments.unshift(newComment);
+            
+            // Re-render guestbook
+            renderComments();
+
+            // Clear text inputs
+            writerInput.value = '';
+            bodyInput.value = '';
+        }
+
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+
+        // Initialize comments list and Scroll Reveal Observer on document loaded
+        window.addEventListener('DOMContentLoaded', () => {
+            renderComments();
+
+            // Intersection Observer for elegant Fade-In & Slide-Up
+            const revealSections = document.querySelectorAll('.reveal-section');
+            const observerOptions = {
+                root: null,
+                threshold: 0.08, // trigger when 8% is visible
+                rootMargin: '0px 0px -40px 0px'
+            };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    // Only reveal sections if user has completed the gate quiz and unlocked the body scroll
+                    const gate = document.getElementById('quiz-landing-gate');
+                    if (entry.isIntersecting && gate.classList.contains('fade-out')) {
+                        entry.target.classList.add('revealed');
+                        observer.unobserve(entry.target); // stop observing once animation completes
+                    }
+                });
+            }, observerOptions);
+
+            revealSections.forEach(section => {
+                revealObserver.observe(section);
+            });
+        });
+
+        // Hamburger Menu Drawer Open/Close Handler
+        const menuTrigger = document.getElementById('mobile-hamburger-btn');
+        const drawerMenu = document.getElementById('mobile-drawer');
+
+        menuTrigger.addEventListener('click', () => {
+            drawerMenu.classList.toggle('hidden');
+        });
+
+        const mobileNavLinks = drawerMenu.querySelectorAll('a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                drawerMenu.classList.add('hidden');
+            });
+        });
+
+        // Shrink Header height and update Scroll Progress Circular Gauge on scroll
+        const progressRing = document.getElementById('scroll-progress-ring');
+        const progressText = document.getElementById('scroll-progress-text');
+        
+        // Circular circumference is 2 * PI * r = 2 * Math.PI * 16 = ~100.53
+        const strokeCircumference = 2 * Math.PI * 16;
+
+        function updateScrollIndicator() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            
+            // Avoid division by zero
+            const scrollPercentage = docHeight > 0 ? Math.round((scrollTop / docHeight) * 100) : 0;
+            
+            // Update SVG circular bar
+            const offset = strokeCircumference - (scrollPercentage / 100) * strokeCircumference;
+            progressRing.style.strokeDashoffset = offset;
+            
+            // Update percentage number text
+            progressText.innerText = `${scrollPercentage}%`;
+
+            // Shrink header look
+            const header = document.getElementById('main-header');
+            if (scrollTop > 40) {
+                header.classList.add('py-1.5', 'shadow-xl');
+                header.classList.remove('py-3');
+            } else {
+                header.classList.remove('py-1.5', 'shadow-xl');
+                header.classList.add('py-3');
+            }
+        }
+
+        window.addEventListener('scroll', updateScrollIndicator);
+        window.addEventListener('resize', updateScrollIndicator);
+        // Initialize once on load
+        updateScrollIndicator();
+
+        // Fake Suggestion Form Handler
+        function submitFormFake(event) {
+            event.preventDefault();
+            const form = document.getElementById('contact-proposal-form');
+            const toast = document.getElementById('form-success-toast');
+
+            toast.classList.remove('hidden');
+            toast.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            form.reset();
+
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 5000);
+        }
+
+        // Theme Switcher Logic supporting synchronized UI updates
+        const mainSwitcherBtn = document.getElementById('theme-switcher-btn');
+        const quizSwitcherBtn = document.getElementById('quiz-theme-switcher-btn');
+
+        const persistedPref = localStorage.getItem('user-theme-pref');
+        const osThemeDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        function applyThemeState(isLight) {
+            // Target all DOM instances of switcher icons & labels
+            const switcherIcons = document.querySelectorAll('.theme-switcher-icon');
+            const switcherTexts = document.querySelectorAll('.theme-switcher-text');
+
+            if (isLight) {
+                document.body.classList.add('light-mode');
+                
+                switcherIcons.forEach(icon => {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                });
+                switcherTexts.forEach(txt => {
+                    txt.innerText = 'LIGHT';
+                    txt.classList.add('text-vividPink');
+                });
+            } else {
+                document.body.classList.remove('light-mode');
+                
+                switcherIcons.forEach(icon => {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                });
+                switcherTexts.forEach(txt => {
+                    txt.innerText = 'DARK';
+                    txt.classList.remove('text-vividPink');
+                });
+            }
+        }
+
+        if (persistedPref === 'light' || (!persistedPref && !osThemeDark)) {
+            applyThemeState(true);
+        } else {
+            applyThemeState(false);
+        }
+
+        // Action handles for both trigger points
+        const handleThemeToggle = () => {
+            const currentLight = document.body.classList.contains('light-mode');
+            const targetLight = !currentLight;
+            localStorage.setItem('user-theme-pref', targetLight ? 'light' : 'dark');
+            applyThemeState(targetLight);
+        };
+
+        mainSwitcherBtn.addEventListener('click', handleThemeToggle);
+        quizSwitcherBtn.addEventListener('click', handleThemeToggle);
+
+        // Dynamic Interactive Resume Build & Download
+        function downloadInteractiveResume() {
+            const resumeContent = `
+==============================================================
+📋 한가람 퍼스널 포트폴리오 이력서 요약본 (Resume Summary)
+==============================================================
+
+"멈추지 않는 호기심으로 세계를 넓히는 사람, 한가람입니다."
+
+[주요 학업 사항]
+- 동국대학교 학사 졸업 (중어중문학 주전공 / 국제통상학 복수전공)
+- 중등학교 정교사 (2급) 교직이수 완료
+- 중국 베이징 칭화대학교 교환학생 수료
+
+[핵심 역량 지표]
+1. GLOBAL 어학 역량:
+   - 최상위 중국어 HSK 6급 보유
+   - 비즈니스 한-중 통역 실무 3회 전담 수행
+
+2. TECH 역량:
+   - 삼성 청년 SW 아카데미(SSAFY) 16기 AI 트랙 집중 이수 중
+   - 파이썬 NLP, MySQL, 현대 웹 라이브러리 분석
+
+3. ENERGY 역량:
+   - 교내 대규모 중앙동아리 부회장 역임 (리더십 및 커뮤니티 조율)
+   - 러닝, 수영, 등산 등 뛰어난 피지컬 멘탈리티 소유
+
+--------------------------------------------------------------
+* 협업 제안은 언제든 hangaram@example.com 으로 이메일 주시기 바랍니다.
+==============================================================
+            `;
+            const textBlob = new Blob([resumeContent], { type: "text/plain;charset=utf-8" });
+            const mockLink = document.createElement("a");
+            mockLink.href = URL.createObjectURL(textBlob);
+            mockLink.download = "한가람_포트폴리오_이력서_요약본.txt";
+            mockLink.click();
+        }
+    </script>
+</body>
+</html>
